@@ -1,6 +1,23 @@
 import HmacSHA256 from "crypto-js/hmac-sha256";
 import Base64 from "crypto-js/enc-base64";
 import $axios from "axios";
+import {
+  DingConfig,
+  DingFeedCardConfig,
+  DingLinkConfig,
+  DingMarkdownConfig,
+  DingMessageType,
+  DingMoreBtnActionCardConfig,
+  DingSendActionCardParams,
+  DingSendFeedCardParams,
+  DingSendLinkParams,
+  DingSendMarkdownParams,
+  DingSendParams,
+  DingSendTextParams,
+  DingSingleBtnActionCardConfig,
+  DingTextConfig,
+  RobotDingConfig
+} from "../types/robot-ding";
 
 function createSign(timestamp: number, secret: string): string {
   const stringToSign = `${timestamp}\n${secret}`;
