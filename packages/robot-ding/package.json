@@ -15,7 +15,7 @@
   "author": "newblue <greecenew@foxmail.com>",
   "repository": {
     "type": "git",
-    "url": "git@github.com:tnnevol/robot-for-ding.git"
+    "url": "git@gitee.com:tnnevol/tnnevol_tools.git"
   },
   "publishConfig": {
     "access": "public"
