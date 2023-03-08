@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "alioss:init": "alioss init",
-    "alioss:upload": "alioss upload"
+    "alioss:upload": "alioss upload",
+    "alioss:encrypt": "alioss encrypt"
   },
   "devDependencies": {
     "@tnnevol/alioss": "workspace:^1.0.0"

@@ -11,7 +11,7 @@
   },
   "keywords": [
     "alioss",
-    "alioss-upload"
+    "alioss upload"
   ],
   "main": "lib/index.umd.js",
   "types": "types/index.d.ts",

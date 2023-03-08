@@ -35,6 +35,11 @@ const inputs = [
     name: "upload"
   },
   {
+    path: "commands/encrypt.ts",
+    file: "commands/encrypt.js",
+    name: "encrypt"
+  },
+  {
     path: "utils/create.uid.ts",
     file: "utils/create.uid.js",
     name: "create.uid"
