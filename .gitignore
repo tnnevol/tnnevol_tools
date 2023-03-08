@@ -45,3 +45,10 @@ Temporary Items
 /node_modules/
 /packages/examples/
 /pnpm-lock.yaml
+/packages/alioss/.ossignore
+/packages/alioss/alioss.config.js
+/examples/alioss/.ossignore
+/examples/alioss/alioss.config.js
+/examples/alioss/node_modules/
+/examples/alioss/dist/
+/examples/alioss/.osskey.js
