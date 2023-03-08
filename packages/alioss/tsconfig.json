@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext"
+    ],
+    "types": [
+      "node",
+      "inquirer",
+      "fs-extra"
+    ],
+    "skipLibCheck": true,
+    "target": "es2018",
+    "module": "esnext",
+    "baseUrl": ".",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types/"
+    ],
+    "paths": {
+      "~types/*": ["types/*"]
+    },
+    "declaration": false
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
