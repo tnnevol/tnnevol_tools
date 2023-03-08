@@ -13,7 +13,7 @@
     "alioss",
     "alioss upload"
   ],
-  "main": "lib/index.umd.js",
+  "main": "bin/alioss.js",
   "types": "types/index.d.ts",
   "files": [
     "lib",
