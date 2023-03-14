@@ -28,7 +28,7 @@
                 accessKeySecret: AES_decrypted(accessKeySecret, key, iv),
                 bucket: AES_decrypted(bucket, key, iv)
             });
-            for (const _uploadPathFileList of groupListByLength(uploadPathFileList, 40)) {
+            for (const _uploadPathFileList of chunkListByLength(uploadPathFileList, 40)) {
                 await Promise.all(_uploadPathFileList.map(async (filePath) => {
                     const remotePath = path.join(config.remoteDir, path.relative(uploadDir, filePath));
                     const { res } = await ossClient.put(remotePath, path.normalize(filePath));
@@ -39,13 +39,10 @@
         }
     };
     module.exports = command;
-    function groupListByLength(list, length = 20) {
-        const group = [];
+    function chunkListByLength(list, length = 20) {
         const splitCount = Math.ceil(list.length / length);
-        for (let i = 0; i < splitCount; i++) {
-            group.push(list.slice(i * length, (i + 1) * length));
-        }
-        return group;
+        // 使用 Array.from 方法来创建一个长度为 splitCount 的数组，并使用 map 函数来对每个元素进行分割操作
+        return Array.from({ length: splitCount }, (_, i) => list.slice(i * length, (i + 1) * length));
     }
     function deepDir(dir) {
         const files = [];
