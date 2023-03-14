@@ -28,7 +28,7 @@ const command: ActionCommand = {
       accessKeySecret: AES_decrypted(accessKeySecret, key, iv),
       bucket: AES_decrypted(bucket, key, iv)
     });
-    for (const _uploadPathFileList of groupListByLength(
+    for (const _uploadPathFileList of chunkListByLength(
       uploadPathFileList,
       40
     )) {
@@ -58,13 +58,12 @@ module.exports = command;
 
 type GroupList<T> = Array<T>;
 
-function groupListByLength<T>(list: GroupList<T>, length = 20): GroupList<T>[] {
-  const group = [];
+function chunkListByLength<T>(list: GroupList<T>, length = 20): GroupList<T>[] {
   const splitCount = Math.ceil(list.length / length);
-  for (let i = 0; i < splitCount; i++) {
-    group.push(list.slice(i * length, (i + 1) * length));
-  }
-  return group;
+  // 使用 Array.from 方法来创建一个长度为 splitCount 的数组，并使用 map 函数来对每个元素进行分割操作
+  return Array.from({ length: splitCount }, (_, i) =>
+    list.slice(i * length, (i + 1) * length)
+  );
 }
 
 function deepDir(dir: string): string[] {
