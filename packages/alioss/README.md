@@ -72,6 +72,8 @@ dist/e2e/*
 !dist/e2e/plugins
 ```
 
+后期 `aliossOptions` 配置项参数发生变化可使用 `alioss encrypt` 对变更后的明文重新加密，shell 会使用现有项目 `.osskey.js` 文件中的 `key` 和 `iv` 进行加密；也可以将项目中的 `alioss.config.js` 删除,重新初始化。
+
 ## feature
 
 - Node.js上传本地文件
