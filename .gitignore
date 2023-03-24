@@ -52,3 +52,5 @@ Temporary Items
 /examples/alioss/node_modules/
 /examples/alioss/dist/
 /examples/alioss/.osskey.js
+
+.turbo

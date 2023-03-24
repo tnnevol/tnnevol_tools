@@ -4,10 +4,11 @@
   "description": "the tnnevol monorepo",
   "packageManager": "pnpm@7.9.0",
   "engines": {
-    "pnpm": ">=7.9"
+    "node": ">=14"
   },
   "scripts": {
-    "build": "pnpm -C packages/robot-ding build",
+    "turbo:dev": "turbo run start --parallel",
+    "turbo:build": "turbo run build --parallel",
     "lint:fix": "eslint --fix . --ext .ts"
   },
   "keywords": [
@@ -26,6 +27,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
     "rimraf": "^4.3.0",
+    "turbo": "^1.8.5",
     "typescript": "^4.8.4"
   }
 }
