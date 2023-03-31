@@ -8,6 +8,8 @@ const OSS = require("ali-oss");
 const chalk = require("chalk");
 const { AES_decrypted }: AesCrypto.AesCrypto = require("../utils/aes.crypto");
 
+const pathReg = /\\\\|\\/g;
+
 const command: ActionCommand = {
   description: "alioss 上传",
   async apply() {
@@ -35,7 +37,7 @@ const command: ActionCommand = {
       await Promise.all(
         _uploadPathFileList.map(async filePath => {
           const remotePath = path.join(
-            config.remoteDir,
+            config.remoteDir.replace(pathReg, "/"),
             path.relative(uploadDir, filePath)
           );
           const { res } = await ossClient.put(
