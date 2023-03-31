@@ -36,10 +36,9 @@ const command: ActionCommand = {
     )) {
       await Promise.all(
         _uploadPathFileList.map(async filePath => {
-          const remotePath = path.join(
-            config.remoteDir.replace(pathReg, "/"),
-            path.relative(uploadDir, filePath)
-          );
+          const remotePath = path
+            .join(config.remoteDir, path.relative(uploadDir, filePath))
+            .replace(pathReg, "/");
           const { res } = await ossClient.put(
             remotePath,
             path.normalize(filePath)

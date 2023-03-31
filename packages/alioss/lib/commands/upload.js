@@ -31,7 +31,9 @@
             });
             for (const _uploadPathFileList of chunkListByLength(uploadPathFileList, 40)) {
                 await Promise.all(_uploadPathFileList.map(async (filePath) => {
-                    const remotePath = path.join(config.remoteDir.replace(pathReg, "/"), path.relative(uploadDir, filePath));
+                    const remotePath = path
+                        .join(config.remoteDir, path.relative(uploadDir, filePath))
+                        .replace(pathReg, "/");
                     const { res } = await ossClient.put(remotePath, path.normalize(filePath));
                     console.log(chalk[res.status === 200 ? "green" : "red"](`${filePath} to oss ${remotePath} ${res.statusMessage}`));
                 }));
