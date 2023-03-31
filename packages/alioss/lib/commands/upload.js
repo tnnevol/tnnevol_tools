@@ -9,6 +9,7 @@
     const OSS = require("ali-oss");
     const chalk = require("chalk");
     const { AES_decrypted } = require("../utils/aes.crypto");
+    const pathReg = /\\\\|\\/g;
     const command = {
         description: "alioss 上传",
         async apply() {
@@ -30,7 +31,7 @@
             });
             for (const _uploadPathFileList of chunkListByLength(uploadPathFileList, 40)) {
                 await Promise.all(_uploadPathFileList.map(async (filePath) => {
-                    const remotePath = path.join(config.remoteDir, path.relative(uploadDir, filePath));
+                    const remotePath = path.join(config.remoteDir.replace(pathReg, "/"), path.relative(uploadDir, filePath));
                     const { res } = await ossClient.put(remotePath, path.normalize(filePath));
                     console.log(chalk[res.status === 200 ? "green" : "red"](`${filePath} to oss ${remotePath} ${res.statusMessage}`));
                 }));
