@@ -24,6 +24,7 @@
             const { key, iv } = config;
             const { region, accessKeyId, accessKeySecret, bucket } = config.aliossOptions;
             const ossClient = new OSS({
+                ...config.aliossOptions,
                 region: AES_decrypted(region, key, iv),
                 accessKeyId: AES_decrypted(accessKeyId, key, iv),
                 accessKeySecret: AES_decrypted(accessKeySecret, key, iv),
