@@ -31,6 +31,7 @@ const command: ActionCommand = {
       accessKeySecret: AES_decrypted(accessKeySecret, key, iv),
       bucket: AES_decrypted(bucket, key, iv)
     });
+    const toolsOss = ossTools(ossClient);
     for (const _uploadPathFileList of chunkListByLength(
       uploadPathFileList,
       40
@@ -40,15 +41,19 @@ const command: ActionCommand = {
           const remotePath = path
             .join(config.remoteDir, path.relative(uploadDir, filePath))
             .replace(pathReg, "/");
-          const { res } = await ossClient.put(
-            remotePath,
-            path.normalize(filePath)
-          );
-          console.log(
-            chalk[res.status === 200 ? "green" : "red"](
-              `${filePath} to oss ${remotePath} ${res.statusMessage}`
-            )
-          );
+          if (await toolsOss.isExistObject(remotePath)) {
+            console.log(chalk.green(`${filePath} 文件已存在`));
+          } else {
+            const { res } = await ossClient.put(
+              remotePath,
+              path.normalize(filePath)
+            );
+            console.log(
+              chalk[res.status === 200 ? "green" : "red"](
+                `${filePath} to oss ${remotePath} ${res.statusMessage}`
+              )
+            );
+          }
         })
       );
     }
@@ -99,4 +104,20 @@ function ossignoreProcess(): string[] {
       }
       return !!content;
     });
+}
+
+function ossTools(client: OSS) {
+  return {
+    async isExistObject(name: string, options: OSS.HeadObjectOptions = {}) {
+      try {
+        await client.head(name, options);
+        return true;
+      } catch (error: OSS.HeadObjectResult) {
+        if (error.code === "NoSuchKey") {
+          return false;
+        }
+        throw new Error(error);
+      }
+    }
+  };
 }

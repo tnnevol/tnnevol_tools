@@ -3,11 +3,6 @@
     "lib": [
       "ESNext"
     ],
-    "types": [
-      "node",
-      "inquirer",
-      "fs-extra"
-    ],
     "skipLibCheck": true,
     "target": "es2018",
     "module": "esnext",
@@ -24,8 +19,14 @@
     "rootDir": "./src",
     "outDir": "./lib",
     "typeRoots": [
-      "./node_modules/@types/",
-      "./types/"
+      "node_modules/@types",
+      "types"
+    ],
+    "types": [
+      "node",
+      "inquirer",
+      "fs-extra",
+      "ali-oss"
     ],
     "paths": {
       "~types/*": ["types/*"]

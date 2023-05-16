@@ -7,6 +7,6 @@
     "alioss:encrypt": "alioss encrypt"
   },
   "devDependencies": {
-    "@tnnevol/alioss": "workspace:^1.0.0"
+    "@tnnevol/alioss": "workspace:*"
   }
 }

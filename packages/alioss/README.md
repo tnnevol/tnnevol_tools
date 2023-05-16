@@ -77,3 +77,4 @@ dist/e2e/*
 ## feature
 
 - Node.js上传本地文件
+- 校验本地文件，oss是否已存在

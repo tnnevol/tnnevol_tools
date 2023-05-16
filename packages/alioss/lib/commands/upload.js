@@ -30,13 +30,19 @@
                 accessKeySecret: AES_decrypted(accessKeySecret, key, iv),
                 bucket: AES_decrypted(bucket, key, iv)
             });
+            const toolsOss = ossTools(ossClient);
             for (const _uploadPathFileList of chunkListByLength(uploadPathFileList, 40)) {
                 await Promise.all(_uploadPathFileList.map(async (filePath) => {
                     const remotePath = path
                         .join(config.remoteDir, path.relative(uploadDir, filePath))
                         .replace(pathReg, "/");
-                    const { res } = await ossClient.put(remotePath, path.normalize(filePath));
-                    console.log(chalk[res.status === 200 ? "green" : "red"](`${filePath} to oss ${remotePath} ${res.statusMessage}`));
+                    if (await toolsOss.isExistObject(remotePath)) {
+                        console.log(chalk.green(`${filePath} 文件已存在`));
+                    }
+                    else {
+                        const { res } = await ossClient.put(remotePath, path.normalize(filePath));
+                        console.log(chalk[res.status === 200 ? "green" : "red"](`${filePath} to oss ${remotePath} ${res.statusMessage}`));
+                    }
                 }));
             }
             console.timeEnd("上传时间：");
@@ -77,6 +83,22 @@
             }
             return !!content;
         });
+    }
+    function ossTools(client) {
+        return {
+            async isExistObject(name, options = {}) {
+                try {
+                    await client.head(name, options);
+                    return true;
+                }
+                catch (error) {
+                    if (error.code === "NoSuchKey") {
+                        return false;
+                    }
+                    throw new Error(error);
+                }
+            }
+        };
     }
 
 }));
