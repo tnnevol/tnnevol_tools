@@ -1,0 +1,19 @@
+{
+  "name": "@examples/deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo build",
+    "publish:help": "deploy --help",
+    "publish:init": "deploy init",
+    "publish:encryption": "deploy encryption",
+    "publish:publish": "deploy publish --env=testc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tnnevol/deploy": "workspace:*"
+  }
+}
