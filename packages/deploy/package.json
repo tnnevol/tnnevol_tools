@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/deploy",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "部署工具",
   "scripts": {
     "start": "rimraf ./lib && rollup --config rollup.config.mjs -w",
@@ -35,7 +35,7 @@
     "dedent": "^0.7.0",
     "inquirer": "^8.1.1",
     "nanoid": "^4.0.1",
-    "node-ssh": "^13.1.0",
+    "node-ssh": "^11.0.0",
     "ora": "^5.1.0",
     "tasksfile": "^5.1.1"
   },
