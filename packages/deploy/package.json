@@ -1,13 +1,13 @@
 {
   "name": "@tnnevol/deploy",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "部署工具",
   "scripts": {
     "start": "rimraf ./lib && rollup --config rollup.config.mjs -w",
     "build": "rimraf ./lib && rollup --config rollup.config.mjs"
   },
   "bin": {
-    "deploy": "./lib/index.js"
+    "deploy": "bin/index.js"
   },
   "keywords": [
     "deploy"
