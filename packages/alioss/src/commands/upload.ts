@@ -1,10 +1,11 @@
 import { ActionCommand, AliossConfig, AesCrypto } from "~types/index";
 import type { Dirent } from "fs-extra";
+import type OSS from "ali-oss";
 
 const fs = require("fs-extra");
 const ignore = require("ignore");
 const path = require("path");
-const OSS = require("ali-oss");
+const AliOSS = require("ali-oss");
 const chalk = require("chalk");
 const { AES_decrypted }: AesCrypto.AesCrypto = require("../utils/aes.crypto");
 
@@ -24,7 +25,7 @@ const command: ActionCommand = {
     const { key, iv } = config;
     const { region, accessKeyId, accessKeySecret, bucket } =
       config.aliossOptions;
-    const ossClient = new OSS({
+    const ossClient = new AliOSS({
       ...config.aliossOptions,
       region: AES_decrypted(region, key, iv),
       accessKeyId: AES_decrypted(accessKeyId, key, iv),
@@ -106,14 +107,14 @@ function ossignoreProcess(): string[] {
     });
 }
 
-function ossTools(client: OSS) {
+function ossTools(client: OSS.ClusterClient) {
   return {
     async isExistObject(name: string, options: OSS.HeadObjectOptions = {}) {
       try {
         await client.head(name, options);
         return true;
-      } catch (error: OSS.HeadObjectResult) {
-        if (error.code === "NoSuchKey") {
+      } catch (error: any) {
+        if (error?.code === "NoSuchKey") {
           return false;
         }
         throw new Error(error);
