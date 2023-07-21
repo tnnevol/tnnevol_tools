@@ -1,8 +1,8 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('http'), require('https'), require('url'), require('stream'), require('assert'), require('tty'), require('util'), require('os'), require('zlib')) :
 	typeof define === 'function' && define.amd ? define(['http', 'https', 'url', 'stream', 'assert', 'tty', 'util', 'os', 'zlib'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.index = factory(global.require$$1$2, global.require$$2, global.require$$0$1, global.require$$3, global.require$$4, global.require$$1, global.require$$1$1, global.require$$0, global.require$$8));
-})(this, (function (require$$1$2, require$$2, require$$0$1, require$$3, require$$4, require$$1, require$$1$1, require$$0, require$$8) { 'use strict';
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.index = factory(global.require$$1$1, global.require$$2, global.require$$0$2, global.require$$3, global.require$$4, global.require$$0$1, global.require$$1, global.require$$0, global.require$$8));
+})(this, (function (require$$1$1, require$$2, require$$0$2, require$$3, require$$4, require$$0$1, require$$1, require$$0, require$$8) { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -3186,12 +3186,12 @@
 	function requireHasFlag () {
 		if (hasRequiredHasFlag) return hasFlag;
 		hasRequiredHasFlag = 1;
-
-		hasFlag = (flag, argv = process.argv) => {
+		hasFlag = (flag, argv) => {
+			argv = argv || process.argv;
 			const prefix = flag.startsWith('-') ? '' : (flag.length === 1 ? '-' : '--');
-			const position = argv.indexOf(prefix + flag);
-			const terminatorPosition = argv.indexOf('--');
-			return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+			const pos = argv.indexOf(prefix + flag);
+			const terminatorPos = argv.indexOf('--');
+			return pos !== -1 && (terminatorPos === -1 ? true : pos < terminatorPos);
 		};
 		return hasFlag;
 	}
@@ -3203,32 +3203,23 @@
 		if (hasRequiredSupportsColor) return supportsColor_1;
 		hasRequiredSupportsColor = 1;
 		const os = require$$0;
-		const tty = require$$1;
 		const hasFlag = requireHasFlag();
 
-		const {env} = process;
+		const env = process.env;
 
 		let forceColor;
 		if (hasFlag('no-color') ||
 			hasFlag('no-colors') ||
-			hasFlag('color=false') ||
-			hasFlag('color=never')) {
-			forceColor = 0;
+			hasFlag('color=false')) {
+			forceColor = false;
 		} else if (hasFlag('color') ||
 			hasFlag('colors') ||
 			hasFlag('color=true') ||
 			hasFlag('color=always')) {
-			forceColor = 1;
+			forceColor = true;
 		}
-
 		if ('FORCE_COLOR' in env) {
-			if (env.FORCE_COLOR === 'true') {
-				forceColor = 1;
-			} else if (env.FORCE_COLOR === 'false') {
-				forceColor = 0;
-			} else {
-				forceColor = env.FORCE_COLOR.length === 0 ? 1 : Math.min(parseInt(env.FORCE_COLOR, 10), 3);
-			}
+			forceColor = env.FORCE_COLOR.length === 0 || parseInt(env.FORCE_COLOR, 10) !== 0;
 		}
 
 		function translateLevel(level) {
@@ -3244,8 +3235,8 @@
 			};
 		}
 
-		function supportsColor(haveStream, streamIsTTY) {
-			if (forceColor === 0) {
+		function supportsColor(stream) {
+			if (forceColor === false) {
 				return 0;
 			}
 
@@ -3259,21 +3250,22 @@
 				return 2;
 			}
 
-			if (haveStream && !streamIsTTY && forceColor === undefined) {
+			if (stream && !stream.isTTY && forceColor !== true) {
 				return 0;
 			}
 
-			const min = forceColor || 0;
-
-			if (env.TERM === 'dumb') {
-				return min;
-			}
+			const min = forceColor ? 1 : 0;
 
 			if (process.platform === 'win32') {
-				// Windows 10 build 10586 is the first Windows release that supports 256 colors.
-				// Windows 10 build 14931 is the first release that supports 16m/TrueColor.
+				// Node.js 7.5.0 is the first version of Node.js to include a patch to
+				// libuv that enables 256 color output on Windows. Anything earlier and it
+				// won't work. However, here we target Node.js 8 at minimum as it is an LTS
+				// release, and Node.js 7 is not. Windows 10 build 10586 is the first Windows
+				// release that supports 256 colors. Windows 10 build 14931 is the first release
+				// that supports 16m/TrueColor.
 				const osRelease = os.release().split('.');
 				if (
+					Number(process.versions.node.split('.')[0]) >= 8 &&
 					Number(osRelease[0]) >= 10 &&
 					Number(osRelease[2]) >= 10586
 				) {
@@ -3284,7 +3276,7 @@
 			}
 
 			if ('CI' in env) {
-				if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI', 'GITHUB_ACTIONS', 'BUILDKITE'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
+				if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
 					return 1;
 				}
 
@@ -3323,18 +3315,22 @@
 				return 1;
 			}
 
+			if (env.TERM === 'dumb') {
+				return min;
+			}
+
 			return min;
 		}
 
 		function getSupportLevel(stream) {
-			const level = supportsColor(stream, stream && stream.isTTY);
+			const level = supportsColor(stream);
 			return translateLevel(level);
 		}
 
 		supportsColor_1 = {
 			supportsColor: getSupportLevel,
-			stdout: translateLevel(supportsColor(true, tty.isatty(1))),
-			stderr: translateLevel(supportsColor(true, tty.isatty(2)))
+			stdout: getSupportLevel(process.stdout),
+			stderr: getSupportLevel(process.stderr)
 		};
 		return supportsColor_1;
 	}
@@ -3349,8 +3345,8 @@
 		if (hasRequiredNode) return node.exports;
 		hasRequiredNode = 1;
 		(function (module, exports) {
-			const tty = require$$1;
-			const util = require$$1$1;
+			const tty = require$$0$1;
+			const util = require$$1;
 
 			/**
 			 * This is the Node.js implementation of `debug()`.
@@ -3661,9 +3657,9 @@
 	function requireFollowRedirects () {
 		if (hasRequiredFollowRedirects) return followRedirects.exports;
 		hasRequiredFollowRedirects = 1;
-		var url = require$$0$1;
+		var url = require$$0$2;
 		var URL = url.URL;
-		var http = require$$1$2;
+		var http = require$$1$1;
 		var https = require$$2;
 		var Writable = require$$3.Writable;
 		var assert = require$$4;
@@ -4308,11 +4304,11 @@
 		var settle = requireSettle();
 		var buildFullPath = requireBuildFullPath();
 		var buildURL = buildURL$1;
-		var http = require$$1$2;
+		var http = require$$1$1;
 		var https = require$$2;
 		var httpFollow = requireFollowRedirects().http;
 		var httpsFollow = requireFollowRedirects().https;
-		var url = require$$0$1;
+		var url = require$$0$2;
 		var zlib = require$$8;
 		var VERSION = requireData().version;
 		var createError = requireCreateError();
