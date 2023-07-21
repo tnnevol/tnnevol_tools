@@ -215,7 +215,7 @@ async function removeLocalFileTask(config: EnvConfig<string>, index: number) {
   }
 }
 
-async function closeSSHTask(config: EnvConfig<string>, index: number) {
+async function closeSSHTask() {
   ssh.dispose();
 }
 
@@ -296,10 +296,12 @@ const register: TaskRegister = {
   name: "publish",
   description: "部署发布",
   options: {
-    env: "部署环境, 环境的值对应 配置文件中 serverConfig 的 key"
+    env: "必选 部署环境, 环境的值对应 配置文件中 serverConfig 的 key",
+    unprompt: "取消提示确认"
   },
   examples: dedent`
     deploy publish --env=prod
+    deploy publish --env=prod -unprompt
   `,
   async register(options) {
     if (checkDeployConfigExists()) {
@@ -307,22 +309,24 @@ const register: TaskRegister = {
       const projectName = config.projectName;
       const currentTime = new Date().getTime();
       // 检查环境是否存在
-      const { env } = options;
+      const { env, unprompt } = options;
       if (env) {
+        let isDeploy = !!unprompt;
         checkEnvCorrect(config, env as keyof ServerConfig<string>);
-
         const envConfig = deployConfigForDecrypted(
           config.cryptoKey,
           config.cryptoIv,
           config.serverConfig[env as keyof ServerConfig<string>]
         );
-
-        const answers = await confirmDeploy(
-          `${output.underline(projectName)} 项目是否部署到 ${output.underline(
-            envConfig.name
-          )}?`
-        );
-        if (answers.confirm) {
+        if (!isDeploy) {
+          const answers = await confirmDeploy(
+            `${output.underline(projectName)} 项目是否部署到 ${output.underline(
+              envConfig.name
+            )}?`
+          );
+          isDeploy = answers.confirm;
+        }
+        if (isDeploy) {
           createTaskList(envConfig);
           await executeTaskList(envConfig);
           output.success(
@@ -333,6 +337,9 @@ const register: TaskRegister = {
         } else {
           process.exit(1);
         }
+      } else {
+        output.error("请选择部署环境");
+        process.exit(1);
       }
     } else {
       output.error("deploy.config.js 文件不存，请使用 deploy init 命令创建");

@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/deploy",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "部署工具",
   "scripts": {
     "start": "rimraf ./lib && rollup --config rollup.config.mjs -w",
