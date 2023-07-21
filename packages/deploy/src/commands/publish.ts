@@ -301,7 +301,7 @@ const register: TaskRegister = {
   },
   examples: dedent`
     deploy publish --env=prod
-    deploy publish --env=prod -unprompt
+    deploy publish --env=prod --unprompt
   `,
   async register(options) {
     if (checkDeployConfigExists()) {
