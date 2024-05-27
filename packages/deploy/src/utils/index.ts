@@ -1,10 +1,9 @@
 import { deployConfigPath } from "~/config";
 import { customAlphabet } from "nanoid";
-
-const ora = require("ora");
-const chalk = require("chalk");
-const CryptoJS = require("crypto-js");
-const fs = require("fs");
+import ora from "ora";
+import chalk from "chalk";
+import CryptoJS from "crypto-js";
+import fs from "fs";
 
 export function createUid(): string {
   const nanoid = customAlphabet("1234567890abcdef", 16);

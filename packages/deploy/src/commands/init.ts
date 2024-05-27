@@ -2,11 +2,6 @@ import dedent from "dedent";
 import { checkDeployConfigExists, output, createUid, aesCrypto } from "~/utils";
 import { inquirerConfig, deployConfigPath } from "~/config";
 import inquirer from "inquirer";
-import type {
-  TaskRegister,
-  QuestionAnswerMap,
-  DeployConfig
-} from "../../types";
 import fs from "fs";
 import childProcess from "child_process";
 

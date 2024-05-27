@@ -8,7 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "baseUrl": ".",
-    "sourceMap": true,
+    "sourceMap": false,
     "moduleResolution": "node",
     "allowJs": false,
     "strict": true,
@@ -17,15 +17,15 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "rootDir": "./src",
+//    "rootDir": "./src",
     "outDir": "./lib",
     "typeRoots": [
-      "node_modules/@types",
+      "./node_modules/@types",
     ],
-    "types": [
-      "node",
-      "./types/"
-    ],
+//    "types": [
+//      "node",
+//      "./types/"
+//    ],
     "paths": {
       "~/*": ["src/*"],
     },
@@ -35,7 +35,8 @@
     "enable": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "types/*.d.ts"
   ],
   "exclude": [
     "node_modules"

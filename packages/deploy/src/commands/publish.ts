@@ -1,18 +1,15 @@
 import { deployConfigPath } from "~/config";
-import type { TaskRegister, DeployConfig, EnvConfig } from "../../types";
 import dedent from "dedent";
 import { aesCrypto, checkDeployConfigExists, output } from "~/utils";
-import { ServerConfig } from "../../types";
-import { QuestionCollection } from "inquirer";
-
-const fs = require("fs");
-const path = require("path");
-const ora = require("ora");
-const dayjs = require("dayjs");
-const inquirer = require("inquirer");
-const archiver = require("archiver");
-const { NodeSSH } = require("node-ssh");
-const { sh } = require("tasksfile");
+import { DistinctQuestion } from "inquirer";
+import fs from "fs";
+import path from "path";
+import ora from "ora";
+import dayjs from "dayjs";
+import inquirer from "inquirer";
+import archiver from "archiver";
+import { NodeSSH } from "node-ssh";
+import { sh } from "tasksfile";
 
 const ssh = new NodeSSH();
 
@@ -250,8 +247,8 @@ async function executeTaskList(config: EnvConfig<string>) {
 interface ConfirmQuestion {
   confirm: boolean;
 }
-function confirmDeploy(message: string): ConfirmQuestion {
-  const questions: Array<QuestionCollection<ConfirmQuestion>> = [
+function confirmDeploy(message: string): Promise<ConfirmQuestion> {
+  const questions: DistinctQuestion<ConfirmQuestion>[] = [
     {
       type: "confirm",
       name: "confirm",
@@ -303,7 +300,7 @@ const register: TaskRegister = {
     deploy publish --env=prod
     deploy publish --env=prod --unprompt
   `,
-  async register(options) {
+  async register(options: ICLIOptions) {
     if (checkDeployConfigExists()) {
       const config: DeployConfig<string> = require(deployConfigPath);
       const projectName = config.projectName;

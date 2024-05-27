@@ -1,8 +1,6 @@
 import type { QuestionCollection } from "inquirer";
-import type { QuestionAnswerMap } from "../../types";
-
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
 
 export const inquirerConfig: QuestionCollection<QuestionAnswerMap<string>> = [
   {

@@ -1,10 +1,7 @@
-export interface ICLIOptions {
+interface ICLIOptions {
   [key: string]: number | string | boolean;
 }
-export declare type CommandFunction = (
-  options: ICLIOptions,
-  ...args: any[]
-) => any;
+declare type CommandFunction = (options: ICLIOptions, ...args: any[]) => any;
 
 /**
  * @typedef {Object} TaskRegister
@@ -14,7 +11,7 @@ export declare type CommandFunction = (
  * @property {Object} [options] - 描述任务可用选项的对象。
  * @property {string} [examples] - 任务的使用示例。
  */
-export declare type TaskRegister = {
+declare type TaskRegister = {
   name: string;
   description: string;
   register: CommandFunction;
@@ -24,7 +21,7 @@ export declare type TaskRegister = {
   examples?: string;
 };
 
-export interface EnvConfig<T extends string> {
+interface EnvConfig<T extends string> {
   name: T;
   script: string;
   host: string;
@@ -38,11 +35,11 @@ export interface EnvConfig<T extends string> {
   isRemoveLocalFile: boolean;
 }
 
-export interface ServerConfig<T extends string> {
+interface ServerConfig<T extends string> {
   [key: T]: EnvConfig<T>;
 }
 
-export interface DeployConfig<T extends string> {
+interface DeployConfig<T extends string> {
   projectName: string;
   // privateKey: string;
   // passphrase: string;
@@ -50,13 +47,13 @@ export interface DeployConfig<T extends string> {
   cryptoIv: string;
   serverConfig: ServerConfig<T>;
 }
-export interface QuestionAnswerMap<T extends string> extends EnvConfig<T> {
+interface QuestionAnswerMap<T extends string> extends EnvConfig<T> {
   projectName: string;
   privateKey: string;
   passphrase: string;
 }
 
-export interface PackageConfig {
+interface PackageConfig {
   name: string;
   version: string;
   description: string;

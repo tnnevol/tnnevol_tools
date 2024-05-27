@@ -1,9 +1,7 @@
-import { TaskRegister } from "../../types";
 import { output, checkDeployConfigExists, aesCrypto } from "~/utils";
 import { deployConfigPath } from "~/config";
-
-const inquirer = require("inquirer");
-const dedent = require("dedent");
+import inquirer from "inquirer";
+import dedent from "dedent";
 
 const register: TaskRegister = {
   name: "encryption",

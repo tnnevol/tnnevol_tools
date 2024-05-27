@@ -48,6 +48,8 @@ node_modules
 .ossignore
 alioss.config.js
 dist
+lib
+demo-ts
 .osskey.js
 
 .turbo
