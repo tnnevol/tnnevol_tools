@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/alioss",
-  "version": "1.0.7",
+  "version": "5.2.0",
   "description": "一个用于上传文件到阿里云oss的工具",
   "scripts": {
     "start": "rimraf ./lib && rollup --config rollup.config.mjs -w",
