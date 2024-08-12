@@ -31,7 +31,7 @@ jobs:
         run: pnpm run turbo:build
 
       - name: Publish
-        run: pnpm publish -r --access public --no-git-checks
+        run: pnpm publish -r --filter "@tnnevol/*" --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
