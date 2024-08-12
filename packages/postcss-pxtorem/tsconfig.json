@@ -17,7 +17,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": false,
-    "outDir": "./lib",
+    "outDir": "./dist",
     "typeRoots": [
       "./node_modules/@types",
     ],
