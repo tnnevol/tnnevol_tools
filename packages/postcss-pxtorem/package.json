@@ -1,0 +1,31 @@
+{
+  "name": "@tnnevol/postcss-pxtorem",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "px2rem for postcss",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "author": "zhangtao",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha",
+    "stub": "pnpm unbuild --stub"
+  },
+  "peerDependencies": {
+    "postcss": "^8.0.0"
+  },
+  "dependencies": {
+    "px2rem": "~0.5.0"
+  },
+  "devDependencies": {
+    "cssnano": "^6.1.2",
+    "typescript": "5.4.3",
+    "unbuild": "^2.0.0"
+  }
+}

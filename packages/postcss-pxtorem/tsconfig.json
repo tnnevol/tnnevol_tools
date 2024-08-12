@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext"
+    ],
+    "skipLibCheck": true,
+    "target": "es2018",
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "baseUrl": ".",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "outDir": "./lib",
+    "typeRoots": [
+      "./node_modules/@types",
+    ],
+    "paths": {
+      "~/*": ["src/*"],
+    },
+    "declaration": false
+  },
+  "typeAcquisition": {
+    "enable": true
+  },
+  "include": [
+    "src/**/*",
+    "types/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
