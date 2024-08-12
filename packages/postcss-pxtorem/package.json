@@ -15,7 +15,8 @@
   "license": "MIT",
   "scripts": {
     "test": "mocha",
-    "stub": "pnpm unbuild --stub"
+    "build": "pnpm unbuild --stub",
+    "stub": "pnpm build"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"

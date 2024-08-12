@@ -53,3 +53,5 @@ demo-ts
 .osskey.js
 
 .turbo
+
+.env.github

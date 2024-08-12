@@ -6,6 +6,7 @@
     "turbo:dev": "turbo run start --parallel",
     "turbo:build": "turbo run build --parallel",
     "lint:fix": "eslint --fix . --ext .ts",
+    "release": "bumpp package.json packages/**/package.json",
     "postinstall": "pnpm run stub",
     "stub": "pnpm run -r --parallel stub"
   },
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
+    "bumpp": "^9.4.2",
     "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-mocha": "^10.5.0",
