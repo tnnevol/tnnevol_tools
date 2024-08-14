@@ -1,7 +1,7 @@
 import postcss from "postcss";
-import Px2rem from "px2rem";
+import Px2rem, { Options } from "px2rem";
 
-function pxtoremPlugin(option: Px2rem.Options = {}): postcss.AcceptedPlugin {
+function pxtoremPlugin(option: Options = {}): postcss.AcceptedPlugin {
   return {
     postcssPlugin: "postcss-pxtorem",
     prepare() {

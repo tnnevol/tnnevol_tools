@@ -7,8 +7,8 @@ declare module "px2rem" {
     keepComment?: string; // No transform value comment (default: `no`)
   };
 
-  declare class Px2rem {
-    constructor(options: Options): void;
+  class Px2rem {
+    constructor(options: Options);
 
     generateThree(cssText: string, dpr?: number): string;
 
@@ -17,5 +17,5 @@ declare module "px2rem" {
     _getCalcValue(type: "px" | string, value: string, dpr: number): string;
   }
 
-  export = Px2rem;
+  export default Px2rem;
 }

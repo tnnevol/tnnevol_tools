@@ -17,12 +17,13 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "removeComments": false,
+    "rootDir": ".",
     "outDir": "./dist",
     "typeRoots": [
       "./node_modules/@types",
     ],
     "paths": {
-      "~/*": ["src/*"],
+      "px2rem": ["types/px2rem.d.ts"]
     },
     "declaration": false
   },
@@ -30,8 +31,7 @@
     "enable": true
   },
   "include": [
-    "src/**/*",
-    "types/*.d.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"
