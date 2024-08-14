@@ -1,6 +1,7 @@
 interface ICLIOptions {
   [key: string]: number | string | boolean;
 }
+
 declare type CommandFunction = (options: ICLIOptions, ...args: any[]) => any;
 
 /**
@@ -22,22 +23,23 @@ declare type TaskRegister = {
 };
 
 interface EnvConfig<T extends string> {
+  [key: string]: any;
   name: T;
-  script: string;
+  script?: string;
   host: string;
   port: number;
   username: string;
   password: string;
   distPath: string;
   webDir: string;
-  bakDir: string;
-  isRemoveRemoteFile: boolean;
-  isRemoveLocalFile: boolean;
+  bakDir?: string;
+  isRemoveRemoteFile?: boolean;
+  isRemoveLocalFile?: boolean;
 }
 
-interface ServerConfig<T extends string> {
-  [key: T]: EnvConfig<T>;
-}
+type ServerConfig<T extends string> = {
+  [K in T]: EnvConfig<K>;
+};
 
 interface DeployConfig<T extends string> {
   projectName: string;

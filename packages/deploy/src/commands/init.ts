@@ -41,8 +41,8 @@ function createJsonObj(
         distPath: userInputInfo.distPath,
         webDir: userInputInfo.webDir,
         bakDir: userInputInfo.bakDir,
-        isRemoveRemoteFile: userInputInfo.isRemoveRemoteFile,
-        isRemoveLocalFile: userInputInfo.isRemoveLocalFile
+        isRemoveRemoteFile: !!userInputInfo.isRemoveRemoteFile,
+        isRemoveLocalFile: !!userInputInfo.isRemoveLocalFile
       }
     }
   };

@@ -35,6 +35,7 @@ let taskList: Array<TaskRegisterFn<any>> = [];
 async function execBuildTask(config: EnvConfig<string>, index: number) {
   try {
     const { script } = config;
+    if (!script) return;
     output.log(`(${index}) ${script}`);
     await sh(script, {
       async: true,
