@@ -1,19 +1,18 @@
-import { ActionCommand, AliossConfig, AesCrypto } from "~types/index";
 import type { Dirent } from "fs-extra";
-import type OSS from "ali-oss";
-
-const fs = require("fs-extra");
-const ignore = require("ignore");
-const path = require("path");
-const AliOSS = require("ali-oss");
-const chalk = require("chalk");
-const { AES_decrypted }: AesCrypto.AesCrypto = require("../utils/aes.crypto");
+import OSS from "ali-oss";
+import fs from "fs-extra";
+import ignore from "ignore";
+import path from "path";
+import chalk from "chalk";
+import type { AliossConfig } from "alioss";
+import aesCrypto from "../utils/aes.crypto";
+import type { TaskRegister } from "@tnnevol/register-cli";
 
 const pathReg = /\\\\|\\/g;
-
-const command: ActionCommand = {
+const register: TaskRegister = {
+  name: "upload",
   description: "alioss 上传",
-  async apply() {
+  async register() {
     console.time("上传时间：");
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
     const config: AliossConfig = require(configPath);
@@ -25,12 +24,12 @@ const command: ActionCommand = {
     const { key, iv } = config;
     const { region, accessKeyId, accessKeySecret, bucket } =
       config.aliossOptions;
-    const ossClient = new AliOSS({
+    const ossClient = new OSS({
       ...config.aliossOptions,
-      region: AES_decrypted(region, key, iv),
-      accessKeyId: AES_decrypted(accessKeyId, key, iv),
-      accessKeySecret: AES_decrypted(accessKeySecret, key, iv),
-      bucket: AES_decrypted(bucket, key, iv)
+      region: aesCrypto.AES_decrypted(region, key, iv),
+      accessKeyId: aesCrypto.AES_decrypted(accessKeyId, key, iv),
+      accessKeySecret: aesCrypto.AES_decrypted(accessKeySecret, key, iv),
+      bucket: aesCrypto.AES_decrypted(bucket, key, iv)
     });
     const toolsOss = ossTools(ossClient);
     for (const _uploadPathFileList of chunkListByLength(
@@ -62,7 +61,7 @@ const command: ActionCommand = {
   }
 };
 
-module.exports = command;
+export default register;
 
 type GroupList<T> = Array<T>;
 

@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
-const Service = require("../lib/register");
-const service = new Service();
+const registerTask = require("@tnnevol/register-cli");
+const init = require("../dist/commands/init");
+const encrypt = require("../dist/commands/encrypt");
+const upload = require("../dist/commands/upload");
 
-const rawArgv = process.argv.slice(2);
-const args = require("minimist")(rawArgv);
-const command = args._[0];
-
-service.run(command, args, rawArgv);
+registerTask([init, encrypt, upload]);

@@ -1,8 +1,6 @@
-import { AesCrypto } from "~types/index";
+import CryptoJS from "crypto-js";
 
-const CryptoJS = require("crypto-js");
-
-const aesCrypto: AesCrypto.AesCrypto = {
+const aesCrypto: AesCrypto = {
   /**
    * @description 加密
    * @param message {string}
@@ -40,4 +38,5 @@ const aesCrypto: AesCrypto.AesCrypto = {
     return decryptedStr.toString();
   }
 };
-module.exports = aesCrypto;
+
+export default aesCrypto;

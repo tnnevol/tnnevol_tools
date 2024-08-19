@@ -1,15 +1,16 @@
-import { ActionCommand, AesCrypto } from "~types/index";
+import fs from "fs-extra";
+import chalk from "chalk";
+import path from "path";
+import inquirer from "inquirer";
+import createUid from "../utils/create.uid";
+import aesCrypto from "../utils/aes.crypto";
+import type { TaskRegister } from "@tnnevol/register-cli";
 
-const fs = require("fs-extra");
-const chalk = require("chalk");
-const path = require("path");
-const inquirer = require("inquirer");
-const createUid = require("../utils/create.uid");
-const { AES_encrypt }: AesCrypto.AesCrypto = require("../utils/aes.crypto");
-
-const command: ActionCommand = {
+const register: TaskRegister = {
+  name: "init",
+  options: {},
   description: "alioss 初始化",
-  async apply() {
+  async register() {
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
     const ignoreFile = path.resolve(process.cwd(), ".ossignore");
     const osskeyPath = path.resolve(process.cwd(), ".osskey.js");
@@ -66,10 +67,14 @@ module.exports = {
   localDir:"${localDir}",
   remoteDir:"${remoteDir}",
   aliossOptions:{
-    region: "${AES_encrypt(region, cryptoKey, cryptoIv)}",
-    accessKeyId: "${AES_encrypt(accessKeyId, cryptoKey, cryptoIv)}",
-    accessKeySecret: "${AES_encrypt(accessKeySecret, cryptoKey, cryptoIv)}",
-    bucket: "${AES_encrypt(bucket, cryptoKey, cryptoIv)}"
+    region: "${aesCrypto.AES_encrypt(region, cryptoKey, cryptoIv)}",
+    accessKeyId: "${aesCrypto.AES_encrypt(accessKeyId, cryptoKey, cryptoIv)}",
+    accessKeySecret: "${aesCrypto.AES_encrypt(
+      accessKeySecret,
+      cryptoKey,
+      cryptoIv
+    )}",
+    bucket: "${aesCrypto.AES_encrypt(bucket, cryptoKey, cryptoIv)}"
   }
 }
 `;
@@ -89,8 +94,10 @@ module.exports = {
         }
       });
       fs.ensureFileSync(ignoreFile);
+    } else {
+      console.log(chalk.red(`已存在配置文件，请删除后重试`));
     }
   }
 };
 
-module.exports = command;
+export default register;

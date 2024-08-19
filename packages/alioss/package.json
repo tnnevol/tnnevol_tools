@@ -3,8 +3,10 @@
   "version": "5.2.0",
   "description": "一个用于上传文件到阿里云oss的工具",
   "scripts": {
-    "start": "rimraf ./lib && rollup --config rollup.config.mjs -w",
-    "build": "rimraf ./lib && rollup --config rollup.config.mjs"
+    "start": "pnpm run start:rollup",
+    "build": "pnpm run build:rollup",
+    "start:rollup": "rimraf ./dist && rollup --config rollup.config.mjs -w",
+    "build:rollup": "rimraf ./dist && rollup --config rollup.config.mjs"
   },
   "bin": {
     "alioss": "bin/alioss.js"
@@ -16,7 +18,7 @@
   "main": "bin/alioss.js",
   "types": "types/index.d.ts",
   "files": [
-    "lib",
+    "dist",
     "types",
     "bin"
   ],
@@ -30,21 +32,21 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@types/ali-oss": "^6.16.7",
-    "@types/crypto-js": "^4.0.0",
-    "@types/fs-extra": "^11.0.1",
-    "@types/inquirer": "^8.1.1",
-    "ali-oss": "^6.17.1",
+    "@tnnevol/register-cli": "workspace:*",
+    "ali-oss": "6.21.0",
     "chalk": "^2.4.2",
-    "commander": "^10.0.0",
     "crypto-js": "^4.0.0",
     "fs-extra": "^11.1.0",
     "ignore": "^5.2.4",
     "inquirer": "^8.1.1",
-    "minimist": "^1.2.8",
-    "nanoid": "^4.0.1"
+    "nanoid": "^4.0.1",
+    "tasksfile": "^5.1.1"
   },
   "devDependencies": {
+    "@types/ali-oss": "^6.16.11",
+    "@types/crypto-js": "^4.0.0",
+    "@types/fs-extra": "^11.0.1",
+    "@types/inquirer": "^8.1.1",
     "@rollup/plugin-commonjs": "^23.0.2",
     "@rollup/plugin-json": "^5.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",

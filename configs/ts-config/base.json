@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ESNext"
+    ],
+    "skipLibCheck": true,
+    "module": "esnext",
+    "target": "es2018",
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "removeComments": false,
+    "declaration": false
+  },
+  "typeAcquisition": {
+    "enable": true
+  },
+  "exclude": ["**/node_modules/**", "**/dist/**","**/lib/**"]
+}

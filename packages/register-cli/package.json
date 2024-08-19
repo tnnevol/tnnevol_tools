@@ -1,0 +1,43 @@
+{
+  "name": "@tnnevol/register-cli",
+  "version": "5.2.0",
+  "description": "注册 cli",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "pnpm unbuild --stub",
+    "stub": "pnpm build"
+  },
+  "keywords": [
+    "register-cli"
+  ],
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "author": "batter-vae <greecenew@foxmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:tnnevol/tnnevol_tools.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "tasksfile": "^5.1.1"
+  },
+  "dependencies": {
+    "tasksfile": "^5.1.1"
+  },
+  "devDependencies": {
+    "typescript": "5.4.3",
+    "unbuild": "^2.0.0"
+  }
+}

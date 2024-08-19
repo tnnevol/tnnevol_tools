@@ -1,14 +1,16 @@
-import { ActionCommand, AesCrypto, AliossConfig } from "~types/index";
 import path from "path";
+import aesCrypto from "../utils/aes.crypto";
+import inquirer from "inquirer";
+import type { AliossConfig } from "alioss";
+import type { TaskRegister } from "@tnnevol/register-cli";
 
-const { AES_encrypt }: AesCrypto.AesCrypto = require("../utils/aes.crypto");
-
-const command: ActionCommand = {
+const register: TaskRegister = {
+  name: "encrypt",
   description: "alioss 加密",
-  async apply() {
+  options: {},
+  async register() {
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
     const config: AliossConfig = require(configPath);
-    const inquirer = require("inquirer");
     const { content } = await inquirer.prompt([
       {
         type: "input",
@@ -16,8 +18,11 @@ const command: ActionCommand = {
         message: "请输入需要加密的字符"
       }
     ]);
-    console.log("已加密：", AES_encrypt(content, config.key, config.iv));
+    console.log(
+      "已加密：",
+      aesCrypto.AES_encrypt(content, config.key, config.iv)
+    );
   }
 };
 
-module.exports = command;
+export default register;

@@ -1,42 +1,23 @@
 {
+  "extends": "ts-config/base.json",
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
-    "skipLibCheck": true,
-    "target": "es2018",
-    "module": "esnext",
     "baseUrl": ".",
-    "sourceMap": true,
-    "moduleResolution": "node",
-    "allowJs": false,
-    "strict": true,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "removeComments": false,
-    "rootDir": "./src",
-    "outDir": "./lib",
+    "rootDir": ".",
+    "outDir": "./dist",
     "typeRoots": [
       "node_modules/@types",
-      "types"
+      "./types"
     ],
-    "types": [
-      "node",
-      "inquirer",
-      "fs-extra",
-      "ali-oss"
-    ],
+    "types": ["./types/index"],
+
     "paths": {
-      "~types/*": ["types/*"]
-    },
-    "declaration": false
+      "alioss": ["./types/alioss"]
+    }
+  },
+  "typeAcquisition": {
+    "enable": true
   },
   "include": [
     "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
   ]
 }
