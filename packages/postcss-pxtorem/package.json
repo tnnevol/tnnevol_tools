@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/postcss-pxtorem",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "type": "module",
   "description": "px2rem for postcss",
   "exports": {
