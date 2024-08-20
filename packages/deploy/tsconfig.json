@@ -1,24 +1,9 @@
 {
+  "extends": "ts-config/base.json",
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
-    "skipLibCheck": true,
-    "target": "es2018",
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "sourceMap": false,
-    "moduleResolution": "node",
-    "allowJs": false,
-    "strict": true,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "removeComments": false,
     "baseUrl": ".",
     "rootDir": ".",
-    "outDir": "./lib",
+    "outDir": "./dist",
     "typeRoots": [
       "./node_modules/@types",
       "./types"
@@ -33,9 +18,7 @@
     "enable": true
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["**/node_modules/**", "**/dist/**","**/lib/**"]
 }

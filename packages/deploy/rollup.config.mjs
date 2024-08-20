@@ -7,7 +7,7 @@ import { defineConfig } from "rollup";
 import fs from "fs";
 import path from "path";
 
-const outDir = "lib";
+const outDir = "dist";
 const inputDir = "src";
 
 const production = !process.env.ROLLUP_WATCH;

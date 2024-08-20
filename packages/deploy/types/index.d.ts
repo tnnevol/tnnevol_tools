@@ -1,4 +1,4 @@
-interface ICLIOptions {
+declare interface ICLIOptions {
   [key: string]: number | string | boolean;
 }
 
@@ -22,7 +22,7 @@ declare type TaskRegister = {
   examples?: string;
 };
 
-interface EnvConfig<T extends string> {
+declare interface EnvConfig<T extends string> {
   [key: string]: any;
   name: T;
   script?: string;
@@ -37,11 +37,11 @@ interface EnvConfig<T extends string> {
   isRemoveLocalFile?: boolean;
 }
 
-type ServerConfig<T extends string> = {
+declare type ServerConfig<T extends string> = {
   [K in T]: EnvConfig<K>;
 };
 
-interface DeployConfig<T extends string> {
+declare interface DeployConfig<T extends string> {
   projectName: string;
   // privateKey: string;
   // passphrase: string;
@@ -49,13 +49,13 @@ interface DeployConfig<T extends string> {
   cryptoIv: string;
   serverConfig: ServerConfig<T>;
 }
-interface QuestionAnswerMap<T extends string> extends EnvConfig<T> {
+declare interface QuestionAnswerMap<T extends string> extends EnvConfig<T> {
   projectName: string;
   privateKey: string;
   passphrase: string;
 }
 
-interface PackageConfig {
+declare interface PackageConfig {
   name: string;
   version: string;
   description: string;

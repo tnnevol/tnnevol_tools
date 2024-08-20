@@ -6,8 +6,8 @@
   "scripts": {
     "start": "pnpm run start:rollup",
     "build": "pnpm run build:rollup",
-    "start:rollup": "rimraf ./lib && rollup --config rollup.config.mjs -w",
-    "build:rollup": "rimraf ./lib && rollup --config rollup.config.mjs"
+    "start:rollup": "rimraf ./dist && rollup --config rollup.config.mjs -w",
+    "build:rollup": "rimraf ./dist && rollup --config rollup.config.mjs"
   },
   "bin": {
     "deploy": "bin/index.js"
@@ -19,7 +19,7 @@
   "types": "./types/index.d.ts",
   "files": [
     "bin",
-    "lib",
+    "dist",
     "types"
   ],
   "author": "batter-vae <greecenew@foxmail.com>",
