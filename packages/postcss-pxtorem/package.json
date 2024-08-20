@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/postcss-pxtorem",
-  "version": "5.2.4",
+  "version": "5.2.5-beta.1",
   "type": "module",
   "description": "px2rem for postcss",
   "exports": {
@@ -13,7 +13,12 @@
   "types": "./dist/index.d.ts",
   "author": "zhangtao",
   "license": "MIT",
-  "files": ["src", "test", "types", "build.config.ts"],
+  "files": [
+    "src",
+    "test",
+    "types",
+    "build.config.ts"
+  ],
   "scripts": {
     "test": "mocha",
     "postinstall": "pnpm run build",
