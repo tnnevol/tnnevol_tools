@@ -19,7 +19,8 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "types"
+    "types",
+    "src"
   ],
   "author": "batter-vae <greecenew@foxmail.com>",
   "repository": {
