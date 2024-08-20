@@ -20,7 +20,8 @@
   "files": [
     "dist",
     "types",
-    "bin"
+    "bin",
+    "ali-oss.d.ts"
   ],
   "author": "batter-vae <greecenew@foxmail.com>",
   "repository": {

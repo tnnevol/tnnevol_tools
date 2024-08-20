@@ -13,10 +13,11 @@
   "types": "./dist/index.d.ts",
   "author": "zhangtao",
   "license": "MIT",
+  "files": ["src", "test", "types", "build.config.ts"],
   "scripts": {
     "test": "mocha",
-    "build": "pnpm unbuild --stub",
-    "stub": "pnpm build"
+    "postinstall": "pnpm run build",
+    "build": "pnpm unbuild --stub"
   },
   "peerDependencies": {
     "postcss": "^8.0.0"

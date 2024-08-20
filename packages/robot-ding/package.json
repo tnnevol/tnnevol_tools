@@ -25,7 +25,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "start": "rollup --config rollup.config.ts -w --configPlugin  typescript",
+    "start": "rollup --config rollup.config.ts -w --configPlugin typescript",
     "build": "rimraf ./lib && rollup --config rollup.config.ts --configPlugin typescript",
     "build:ts": "tsc --module commonjs"
   },

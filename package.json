@@ -6,9 +6,7 @@
     "turbo:dev": "turbo run start --parallel",
     "turbo:build": "turbo run build --parallel",
     "lint:fix": "eslint --fix . --ext .ts",
-    "release": "bumpp package.json packages/**/package.json",
-    "postinstall": "pnpm run stub",
-    "stub": "pnpm run -r --parallel stub"
+    "release": "bumpp package.json packages/**/package.json"
   },
   "keywords": [
     "monorepo",
