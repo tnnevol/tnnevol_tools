@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/deploy",
-  "version": "5.2.2",
+  "version": "5.2.3",
   "description": "部署工具",
   "type": "commonjs",
   "scripts": {
