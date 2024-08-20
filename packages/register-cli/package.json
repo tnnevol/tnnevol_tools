@@ -9,6 +9,7 @@
     }
   },
   "scripts": {
+    "test": "mocha",
     "build": "pnpm unbuild --stub",
     "postinstall": "pnpm run build"
   },
@@ -34,6 +35,8 @@
     "tasksfile": "^5.1.1"
   },
   "dependencies": {
+    "fs-extra": "^11.1.0",
+    "@types/fs-extra": "^11.0.1",
     "tasksfile": "^5.1.1",
     "unbuild": "^2.0.0"
   },

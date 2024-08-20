@@ -15,7 +15,11 @@
   "author": "tnnevol",
   "license": "MIT",
   "homepage": "",
+  "dependencies": {
+    "chalk": "^2.4.2"
+  },
   "devDependencies": {
+    "@types/node": "^18.19.45",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
     "bumpp": "^9.4.2",
