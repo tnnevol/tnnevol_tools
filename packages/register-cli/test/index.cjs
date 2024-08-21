@@ -3,7 +3,7 @@ const path = require("path");
 const assert = require("assert");
 const fs = require("fs-extra");
 
-const cli = path.join(__dirname, "./cli/demo.js");
+const cli = path.join(__dirname, "./cli/demo.cjs");
 
 describe("register-cli", function () {
   it("should register task --help", function () {

@@ -1,39 +1,13 @@
 {
+  "extends": "ts-config/base.json",
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
-    "skipLibCheck": true,
-    "target": "es2018",
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "baseUrl": ".",
-    "sourceMap": false,
-    "moduleResolution": "node",
-    "allowJs": false,
-    "strict": true,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "removeComments": false,
     "rootDir": ".",
     "outDir": "./dist",
-    "typeRoots": [
-      "./node_modules/@types",
-    ],
+    "typeRoots": ["./node_modules/@types"],
     "paths": {
       "px2rem": ["types/px2rem.d.ts"]
-    },
-    "declaration": false
+    }
   },
-  "typeAcquisition": {
-    "enable": true
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"]
 }
