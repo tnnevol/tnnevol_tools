@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/register-cli",
-  "version": "5.2.5-beta.3",
+  "version": "5.2.5-beta.4",
   "description": "注册 cli",
   "type": "module",
   "exports": {

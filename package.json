@@ -1,6 +1,6 @@
 {
   "name": "tnnevol_tools",
-  "version": "5.2.5-beta.3",
+  "version": "5.2.5-beta.4",
   "description": "the tnnevol monorepo",
   "scripts": {
     "turbo:dev": "turbo run start --parallel",
