@@ -5,8 +5,8 @@
   "scripts": {
     "start": "pnpm run start:rollup",
     "build": "pnpm run build:rollup",
-    "start:rollup": "rimraf ./dist && rollup --config rollup.config.mjs -w",
-    "build:rollup": "rimraf ./dist && rollup --config rollup.config.mjs"
+    "start:rollup": "rimraf ./dist && rollup --config rollup.config.ts -w --configPlugin typescript",
+    "build:rollup": "rimraf ./dist && rollup --config rollup.config.ts --configPlugin typescript"
   },
   "bin": {
     "alioss": "bin/alioss.js"
@@ -40,23 +40,15 @@
     "fs-extra": "^11.1.0",
     "ignore": "^5.2.4",
     "inquirer": "^8.1.1",
-    "nanoid": "^4.0.1",
-    "tasksfile": "^5.1.1"
+    "nanoid": "^4.0.1"
   },
   "devDependencies": {
     "@types/ali-oss": "^6.16.11",
     "@types/crypto-js": "^4.0.0",
     "@types/fs-extra": "^11.0.1",
     "@types/inquirer": "^8.1.1",
-    "@rollup/plugin-commonjs": "^23.0.2",
-    "@rollup/plugin-json": "^5.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.4.3",
-    "@rollup/plugin-typescript": "^9.0.2",
     "@types/node": "^14.18.37",
     "rollup": "^3.2.3",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.4.0",
     "typescript": "^4.8.4"
   }
 }
