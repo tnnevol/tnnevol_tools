@@ -1,4 +1,4 @@
-import { deployConfigPath } from "~/config";
+import { deployConfigPath } from "../config";
 import { customAlphabet } from "nanoid";
 import ora from "ora";
 import chalk from "chalk";

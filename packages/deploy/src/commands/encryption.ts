@@ -1,5 +1,5 @@
-import { output, checkDeployConfigExists, aesCrypto } from "~/utils";
-import { deployConfigPath } from "~/config";
+import { output, checkDeployConfigExists, aesCrypto } from "../utils";
+import { deployConfigPath } from "../config";
 import inquirer from "inquirer";
 import dedent from "dedent";
 

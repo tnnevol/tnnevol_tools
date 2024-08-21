@@ -1,6 +1,6 @@
-import { deployConfigPath } from "~/config";
+import { deployConfigPath } from "../config";
 import dedent from "dedent";
-import { aesCrypto, checkDeployConfigExists, output } from "~/utils";
+import { aesCrypto, checkDeployConfigExists, output } from "../utils";
 import { DistinctQuestion } from "inquirer";
 import fs from "fs";
 import path from "path";

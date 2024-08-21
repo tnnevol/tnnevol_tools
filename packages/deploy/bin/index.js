@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const registerTask = require("@tnnevol/register-cli");
-const init = require("../lib/commands/init");
-const encryption = require("../lib/commands/encryption");
-const publish = require("../lib/commands/publish");
+const init = require("../dist/commands/init");
+const encryption = require("../dist/commands/encryption");
+const publish = require("../dist/commands/publish");
 
 registerTask([init, encryption, publish]);
