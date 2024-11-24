@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/rollup-helper",
-  "version": "5.2.5-beta.6",
+  "version": "5.2.5-beta.7",
   "description": "rollup 助手",
   "type": "module",
   "exports": {
