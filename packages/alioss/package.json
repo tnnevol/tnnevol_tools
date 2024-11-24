@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/alioss",
-  "version": "5.2.5-beta.5",
+  "version": "5.2.5-beta.6",
   "description": "一个用于上传文件到阿里云oss的工具",
   "scripts": {
     "start": "pnpm run start:rollup",

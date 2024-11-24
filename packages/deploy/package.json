@@ -1,6 +1,6 @@
 {
   "name": "@tnnevol/deploy",
-  "version": "5.2.5-beta.5",
+  "version": "5.2.5-beta.6",
   "description": "部署工具",
   "scripts": {
     "start": "pnpm run start:rollup",
