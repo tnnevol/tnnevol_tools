@@ -21,7 +21,9 @@ function deployConfigForDecrypted(
 ): EnvConfig<string> {
   return Object.assign(envConfig, {
     username: aesCrypto.decrypt(envConfig.username, key, iv),
-    password: aesCrypto.decrypt(envConfig.password, key, iv)
+    password: envConfig.password
+      ? aesCrypto.decrypt(envConfig.password, key, iv)
+      : ""
   });
 }
 
