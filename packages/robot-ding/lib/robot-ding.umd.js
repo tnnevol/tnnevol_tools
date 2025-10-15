@@ -1,8 +1,8 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('http'), require('https'), require('url'), require('stream'), require('assert'), require('tty'), require('util'), require('os'), require('zlib')) :
 	typeof define === 'function' && define.amd ? define(['http', 'https', 'url', 'stream', 'assert', 'tty', 'util', 'os', 'zlib'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.index = factory(global.require$$1$1, global.require$$2, global.require$$0$2, global.require$$3, global.require$$4, global.require$$0$1, global.require$$1, global.require$$0, global.require$$8));
-})(this, (function (require$$1$1, require$$2, require$$0$2, require$$3, require$$4, require$$0$1, require$$1, require$$0, require$$8) { 'use strict';
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.index = factory(global.require$$1$2, global.require$$2, global.require$$0$1, global.require$$3, global.require$$4, global.require$$1, global.require$$1$1, global.require$$0, global.require$$8));
+})(this, (function (require$$1$2, require$$2, require$$0$1, require$$3, require$$4, require$$1, require$$1$1, require$$0, require$$8) { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -10,18 +10,26 @@
 		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 	}
 
-	var hmacSha256 = {exports: {}};
+	var hmacSha256Exports = {};
+	var hmacSha256 = {
+	  get exports(){ return hmacSha256Exports; },
+	  set exports(v){ hmacSha256Exports = v; },
+	};
 
 	function commonjsRequire(path) {
 		throw new Error('Could not dynamically require "' + path + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 	}
 
-	var core = {exports: {}};
+	var coreExports = {};
+	var core = {
+	  get exports(){ return coreExports; },
+	  set exports(v){ coreExports = v; },
+	};
 
 	var hasRequiredCore;
 
 	function requireCore () {
-		if (hasRequiredCore) return core.exports;
+		if (hasRequiredCore) return coreExports;
 		hasRequiredCore = 1;
 		(function (module, exports) {
 	(function (root, factory) {
@@ -824,15 +832,19 @@
 
 			}));
 	} (core));
-		return core.exports;
+		return coreExports;
 	}
 
-	var sha256 = {exports: {}};
+	var sha256Exports = {};
+	var sha256 = {
+	  get exports(){ return sha256Exports; },
+	  set exports(v){ sha256Exports = v; },
+	};
 
 	var hasRequiredSha256;
 
 	function requireSha256 () {
-		if (hasRequiredSha256) return sha256.exports;
+		if (hasRequiredSha256) return sha256Exports;
 		hasRequiredSha256 = 1;
 		(function (module, exports) {
 	(function (root, factory) {
@@ -1027,15 +1039,19 @@
 
 			}));
 	} (sha256));
-		return sha256.exports;
+		return sha256Exports;
 	}
 
-	var hmac = {exports: {}};
+	var hmacExports = {};
+	var hmac = {
+	  get exports(){ return hmacExports; },
+	  set exports(v){ hmacExports = v; },
+	};
 
 	var hasRequiredHmac;
 
 	function requireHmac () {
-		if (hasRequiredHmac) return hmac.exports;
+		if (hasRequiredHmac) return hmacExports;
 		hasRequiredHmac = 1;
 		(function (module, exports) {
 	(function (root, factory) {
@@ -1174,7 +1190,7 @@
 
 			}));
 	} (hmac));
-		return hmac.exports;
+		return hmacExports;
 	}
 
 	(function (module, exports) {
@@ -1190,9 +1206,13 @@
 		}));
 	} (hmacSha256));
 
-	var HmacSHA256 = hmacSha256.exports;
+	var HmacSHA256 = hmacSha256Exports;
 
-	var encBase64 = {exports: {}};
+	var encBase64Exports = {};
+	var encBase64 = {
+	  get exports(){ return encBase64Exports; },
+	  set exports(v){ encBase64Exports = v; },
+	};
 
 	(function (module, exports) {
 	(function (root, factory) {
@@ -1325,11 +1345,19 @@
 		}));
 	} (encBase64));
 
-	var Base64 = encBase64.exports;
+	var Base64 = encBase64Exports;
 
-	var axios$2 = {exports: {}};
+	var axiosExports$1 = {};
+	var axios$2 = {
+	  get exports(){ return axiosExports$1; },
+	  set exports(v){ axiosExports$1 = v; },
+	};
 
-	var axios$1 = {exports: {}};
+	var axiosExports = {};
+	var axios$1 = {
+	  get exports(){ return axiosExports; },
+	  set exports(v){ axiosExports = v; },
+	};
 
 	var bind$2 = function bind(fn, thisArg) {
 	  return function wrap() {
@@ -2440,11 +2468,23 @@
 		return xhr;
 	}
 
-	var followRedirects = {exports: {}};
+	var followRedirectsExports = {};
+	var followRedirects = {
+	  get exports(){ return followRedirectsExports; },
+	  set exports(v){ followRedirectsExports = v; },
+	};
 
-	var src = {exports: {}};
+	var srcExports = {};
+	var src = {
+	  get exports(){ return srcExports; },
+	  set exports(v){ srcExports = v; },
+	};
 
-	var browser = {exports: {}};
+	var browserExports = {};
+	var browser = {
+	  get exports(){ return browserExports; },
+	  set exports(v){ browserExports = v; },
+	};
 
 	/**
 	 * Helpers.
@@ -2904,7 +2944,7 @@
 	var hasRequiredBrowser;
 
 	function requireBrowser () {
-		if (hasRequiredBrowser) return browser.exports;
+		if (hasRequiredBrowser) return browserExports;
 		hasRequiredBrowser = 1;
 		(function (module, exports) {
 			/**
@@ -3032,6 +3072,8 @@
 					return false;
 				}
 
+				let m;
+
 				// Is webkit? http://stackoverflow.com/a/16459606/376773
 				// document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
 				return (typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance) ||
@@ -3039,7 +3081,7 @@
 					(typeof window !== 'undefined' && window.console && (window.console.firebug || (window.console.exception && window.console.table))) ||
 					// Is firefox >= v31?
 					// https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-					(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31) ||
+					(typeof navigator !== 'undefined' && navigator.userAgent && (m = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m[1], 10) >= 31) ||
 					// Double check webkit in userAgent just in case we are in a worker
 					(typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/));
 			}
@@ -3174,11 +3216,15 @@
 					return '[UnexpectedJSONParseError]: ' + error.message;
 				}
 			};
-	} (browser, browser.exports));
-		return browser.exports;
+	} (browser, browserExports));
+		return browserExports;
 	}
 
-	var node = {exports: {}};
+	var nodeExports = {};
+	var node = {
+	  get exports(){ return nodeExports; },
+	  set exports(v){ nodeExports = v; },
+	};
 
 	var hasFlag;
 	var hasRequiredHasFlag;
@@ -3186,12 +3232,12 @@
 	function requireHasFlag () {
 		if (hasRequiredHasFlag) return hasFlag;
 		hasRequiredHasFlag = 1;
-		hasFlag = (flag, argv) => {
-			argv = argv || process.argv;
+
+		hasFlag = (flag, argv = process.argv) => {
 			const prefix = flag.startsWith('-') ? '' : (flag.length === 1 ? '-' : '--');
-			const pos = argv.indexOf(prefix + flag);
-			const terminatorPos = argv.indexOf('--');
-			return pos !== -1 && (terminatorPos === -1 ? true : pos < terminatorPos);
+			const position = argv.indexOf(prefix + flag);
+			const terminatorPosition = argv.indexOf('--');
+			return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
 		};
 		return hasFlag;
 	}
@@ -3203,23 +3249,36 @@
 		if (hasRequiredSupportsColor) return supportsColor_1;
 		hasRequiredSupportsColor = 1;
 		const os = require$$0;
+		const tty = require$$1;
 		const hasFlag = requireHasFlag();
 
-		const env = process.env;
+		const {env} = process;
 
-		let forceColor;
+		let flagForceColor;
 		if (hasFlag('no-color') ||
 			hasFlag('no-colors') ||
-			hasFlag('color=false')) {
-			forceColor = false;
+			hasFlag('color=false') ||
+			hasFlag('color=never')) {
+			flagForceColor = 0;
 		} else if (hasFlag('color') ||
 			hasFlag('colors') ||
 			hasFlag('color=true') ||
 			hasFlag('color=always')) {
-			forceColor = true;
+			flagForceColor = 1;
 		}
-		if ('FORCE_COLOR' in env) {
-			forceColor = env.FORCE_COLOR.length === 0 || parseInt(env.FORCE_COLOR, 10) !== 0;
+
+		function envForceColor() {
+			if ('FORCE_COLOR' in env) {
+				if (env.FORCE_COLOR === 'true') {
+					return 1;
+				}
+
+				if (env.FORCE_COLOR === 'false') {
+					return 0;
+				}
+
+				return env.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt(env.FORCE_COLOR, 10), 3);
+			}
 		}
 
 		function translateLevel(level) {
@@ -3235,37 +3294,45 @@
 			};
 		}
 
-		function supportsColor(stream) {
-			if (forceColor === false) {
+		function supportsColor(haveStream, {streamIsTTY, sniffFlags = true} = {}) {
+			const noFlagForceColor = envForceColor();
+			if (noFlagForceColor !== undefined) {
+				flagForceColor = noFlagForceColor;
+			}
+
+			const forceColor = sniffFlags ? flagForceColor : noFlagForceColor;
+
+			if (forceColor === 0) {
 				return 0;
 			}
 
-			if (hasFlag('color=16m') ||
-				hasFlag('color=full') ||
-				hasFlag('color=truecolor')) {
-				return 3;
+			if (sniffFlags) {
+				if (hasFlag('color=16m') ||
+					hasFlag('color=full') ||
+					hasFlag('color=truecolor')) {
+					return 3;
+				}
+
+				if (hasFlag('color=256')) {
+					return 2;
+				}
 			}
 
-			if (hasFlag('color=256')) {
-				return 2;
-			}
-
-			if (stream && !stream.isTTY && forceColor !== true) {
+			if (haveStream && !streamIsTTY && forceColor === undefined) {
 				return 0;
 			}
 
-			const min = forceColor ? 1 : 0;
+			const min = forceColor || 0;
+
+			if (env.TERM === 'dumb') {
+				return min;
+			}
 
 			if (process.platform === 'win32') {
-				// Node.js 7.5.0 is the first version of Node.js to include a patch to
-				// libuv that enables 256 color output on Windows. Anything earlier and it
-				// won't work. However, here we target Node.js 8 at minimum as it is an LTS
-				// release, and Node.js 7 is not. Windows 10 build 10586 is the first Windows
-				// release that supports 256 colors. Windows 10 build 14931 is the first release
-				// that supports 16m/TrueColor.
+				// Windows 10 build 10586 is the first Windows release that supports 256 colors.
+				// Windows 10 build 14931 is the first release that supports 16m/TrueColor.
 				const osRelease = os.release().split('.');
 				if (
-					Number(process.versions.node.split('.')[0]) >= 8 &&
 					Number(osRelease[0]) >= 10 &&
 					Number(osRelease[2]) >= 10586
 				) {
@@ -3276,7 +3343,7 @@
 			}
 
 			if ('CI' in env) {
-				if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
+				if (['TRAVIS', 'CIRCLECI', 'APPVEYOR', 'GITLAB_CI', 'GITHUB_ACTIONS', 'BUILDKITE', 'DRONE'].some(sign => sign in env) || env.CI_NAME === 'codeship') {
 					return 1;
 				}
 
@@ -3292,7 +3359,7 @@
 			}
 
 			if ('TERM_PROGRAM' in env) {
-				const version = parseInt((env.TERM_PROGRAM_VERSION || '').split('.')[0], 10);
+				const version = Number.parseInt((env.TERM_PROGRAM_VERSION || '').split('.')[0], 10);
 
 				switch (env.TERM_PROGRAM) {
 					case 'iTerm.app':
@@ -3315,22 +3382,22 @@
 				return 1;
 			}
 
-			if (env.TERM === 'dumb') {
-				return min;
-			}
-
 			return min;
 		}
 
-		function getSupportLevel(stream) {
-			const level = supportsColor(stream);
+		function getSupportLevel(stream, options = {}) {
+			const level = supportsColor(stream, {
+				streamIsTTY: stream && stream.isTTY,
+				...options
+			});
+
 			return translateLevel(level);
 		}
 
 		supportsColor_1 = {
 			supportsColor: getSupportLevel,
-			stdout: getSupportLevel(process.stdout),
-			stderr: getSupportLevel(process.stderr)
+			stdout: getSupportLevel({isTTY: tty.isatty(1)}),
+			stderr: getSupportLevel({isTTY: tty.isatty(2)})
 		};
 		return supportsColor_1;
 	}
@@ -3342,11 +3409,11 @@
 	var hasRequiredNode;
 
 	function requireNode () {
-		if (hasRequiredNode) return node.exports;
+		if (hasRequiredNode) return nodeExports;
 		hasRequiredNode = 1;
 		(function (module, exports) {
-			const tty = require$$0$1;
-			const util = require$$1;
+			const tty = require$$1;
+			const util = require$$1$1;
 
 			/**
 			 * This is the Node.js implementation of `debug()`.
@@ -3530,11 +3597,11 @@
 			}
 
 			/**
-			 * Invokes `util.format()` with the specified arguments and writes to stderr.
+			 * Invokes `util.formatWithOptions()` with the specified arguments and writes to stderr.
 			 */
 
 			function log(...args) {
-				return process.stderr.write(util.format(...args) + '\n');
+				return process.stderr.write(util.formatWithOptions(exports.inspectOpts, ...args) + '\n');
 			}
 
 			/**
@@ -3604,8 +3671,8 @@
 				this.inspectOpts.colors = this.useColors;
 				return util.inspect(v, this.inspectOpts);
 			};
-	} (node, node.exports));
-		return node.exports;
+	} (node, nodeExports));
+		return nodeExports;
 	}
 
 	/**
@@ -3616,7 +3683,7 @@
 	var hasRequiredSrc;
 
 	function requireSrc () {
-		if (hasRequiredSrc) return src.exports;
+		if (hasRequiredSrc) return srcExports;
 		hasRequiredSrc = 1;
 		(function (module) {
 			if (typeof process === 'undefined' || process.type === 'renderer' || process.browser === true || process.__nwjs) {
@@ -3625,7 +3692,7 @@
 				module.exports = requireNode();
 			}
 	} (src));
-		return src.exports;
+		return srcExports;
 	}
 
 	var debug_1;
@@ -3655,15 +3722,39 @@
 	var hasRequiredFollowRedirects;
 
 	function requireFollowRedirects () {
-		if (hasRequiredFollowRedirects) return followRedirects.exports;
+		if (hasRequiredFollowRedirects) return followRedirectsExports;
 		hasRequiredFollowRedirects = 1;
-		var url = require$$0$2;
+		var url = require$$0$1;
 		var URL = url.URL;
-		var http = require$$1$1;
+		var http = require$$1$2;
 		var https = require$$2;
 		var Writable = require$$3.Writable;
 		var assert = require$$4;
 		var debug = requireDebug();
+
+		// Whether to use the native URL object or the legacy url module
+		var useNativeURL = false;
+		try {
+		  assert(new URL());
+		}
+		catch (error) {
+		  useNativeURL = error.code === "ERR_INVALID_URL";
+		}
+
+		// URL fields to preserve in copy operations
+		var preservedUrlFields = [
+		  "auth",
+		  "host",
+		  "hostname",
+		  "href",
+		  "path",
+		  "pathname",
+		  "port",
+		  "protocol",
+		  "query",
+		  "search",
+		  "hash",
+		];
 
 		// Create handlers that pass events from native requests
 		var events = ["abort", "aborted", "connect", "error", "socket", "timeout"];
@@ -3674,19 +3765,20 @@
 		  };
 		});
 
+		// Error types with codes
 		var InvalidUrlError = createErrorType(
 		  "ERR_INVALID_URL",
 		  "Invalid URL",
 		  TypeError
 		);
-		// Error types with codes
 		var RedirectionError = createErrorType(
 		  "ERR_FR_REDIRECTION_FAILURE",
 		  "Redirected request failed"
 		);
 		var TooManyRedirectsError = createErrorType(
 		  "ERR_FR_TOO_MANY_REDIRECTS",
-		  "Maximum number of redirects exceeded"
+		  "Maximum number of redirects exceeded",
+		  RedirectionError
 		);
 		var MaxBodyLengthExceededError = createErrorType(
 		  "ERR_FR_MAX_BODY_LENGTH_EXCEEDED",
@@ -3696,6 +3788,9 @@
 		  "ERR_STREAM_WRITE_AFTER_END",
 		  "write after end"
 		);
+
+		// istanbul ignore next
+		var destroy = Writable.prototype.destroy || noop;
 
 		// An HTTP(S) request that can be redirected
 		function RedirectableRequest(options, responseCallback) {
@@ -3718,7 +3813,13 @@
 		  // React to responses of native requests
 		  var self = this;
 		  this._onNativeResponse = function (response) {
-		    self._processResponse(response);
+		    try {
+		      self._processResponse(response);
+		    }
+		    catch (cause) {
+		      self.emit("error", cause instanceof RedirectionError ?
+		        cause : new RedirectionError({ cause: cause }));
+		    }
 		  };
 
 		  // Perform the first request
@@ -3727,8 +3828,15 @@
 		RedirectableRequest.prototype = Object.create(Writable.prototype);
 
 		RedirectableRequest.prototype.abort = function () {
-		  abortRequest(this._currentRequest);
+		  destroyRequest(this._currentRequest);
+		  this._currentRequest.abort();
 		  this.emit("abort");
+		};
+
+		RedirectableRequest.prototype.destroy = function (error) {
+		  destroyRequest(this._currentRequest, error);
+		  destroy.call(this, error);
+		  return this;
 		};
 
 		// Writes buffered data to the current native request
@@ -3843,6 +3951,7 @@
 		    self.removeListener("abort", clearTimer);
 		    self.removeListener("error", clearTimer);
 		    self.removeListener("response", clearTimer);
+		    self.removeListener("close", clearTimer);
 		    if (callback) {
 		      self.removeListener("timeout", callback);
 		    }
@@ -3869,6 +3978,7 @@
 		  this.on("abort", clearTimer);
 		  this.on("error", clearTimer);
 		  this.on("response", clearTimer);
+		  this.on("close", clearTimer);
 
 		  return this;
 		};
@@ -3927,8 +4037,7 @@
 		  var protocol = this._options.protocol;
 		  var nativeProtocol = this._options.nativeProtocols[protocol];
 		  if (!nativeProtocol) {
-		    this.emit("error", new TypeError("Unsupported protocol " + protocol));
-		    return;
+		    throw new TypeError("Unsupported protocol " + protocol);
 		  }
 
 		  // If specified, use the agent corresponding to the protocol
@@ -4020,15 +4129,14 @@
 		  }
 
 		  // The response is a redirect, so abort the current request
-		  abortRequest(this._currentRequest);
+		  destroyRequest(this._currentRequest);
 		  // Discard the remainder of the response to avoid waiting for data
 		  response.destroy();
 
 		  // RFC7231§6.4: A client SHOULD detect and intervene
 		  // in cyclical redirections (i.e., "infinite" redirection loops).
 		  if (++this._redirectCount > this._options.maxRedirects) {
-		    this.emit("error", new TooManyRedirectsError());
-		    return;
+		    throw new TooManyRedirectsError();
 		  }
 
 		  // Store the request headers if applicable
@@ -4062,34 +4170,24 @@
 		  var currentHostHeader = removeMatchingHeaders(/^host$/i, this._options.headers);
 
 		  // If the redirect is relative, carry over the host of the last request
-		  var currentUrlParts = url.parse(this._currentUrl);
+		  var currentUrlParts = parseUrl(this._currentUrl);
 		  var currentHost = currentHostHeader || currentUrlParts.host;
 		  var currentUrl = /^\w+:/.test(location) ? this._currentUrl :
 		    url.format(Object.assign(currentUrlParts, { host: currentHost }));
 
-		  // Determine the URL of the redirection
-		  var redirectUrl;
-		  try {
-		    redirectUrl = url.resolve(currentUrl, location);
-		  }
-		  catch (cause) {
-		    this.emit("error", new RedirectionError({ cause: cause }));
-		    return;
-		  }
-
 		  // Create the redirected request
-		  debug("redirecting to", redirectUrl);
+		  var redirectUrl = resolveUrl(location, currentUrl);
+		  debug("redirecting to", redirectUrl.href);
 		  this._isRedirect = true;
-		  var redirectUrlParts = url.parse(redirectUrl);
-		  Object.assign(this._options, redirectUrlParts);
+		  spreadUrlObject(redirectUrl, this._options);
 
 		  // Drop confidential headers when redirecting to a less secure protocol
 		  // or to a different domain that is not a superdomain
-		  if (redirectUrlParts.protocol !== currentUrlParts.protocol &&
-		     redirectUrlParts.protocol !== "https:" ||
-		     redirectUrlParts.host !== currentHost &&
-		     !isSubdomain(redirectUrlParts.host, currentHost)) {
-		    removeMatchingHeaders(/^(?:authorization|cookie)$/i, this._options.headers);
+		  if (redirectUrl.protocol !== currentUrlParts.protocol &&
+		     redirectUrl.protocol !== "https:" ||
+		     redirectUrl.host !== currentHost &&
+		     !isSubdomain(redirectUrl.host, currentHost)) {
+		    removeMatchingHeaders(/^(?:(?:proxy-)?authorization|cookie)$/i, this._options.headers);
 		  }
 
 		  // Evaluate the beforeRedirect callback
@@ -4103,23 +4201,12 @@
 		      method: method,
 		      headers: requestHeaders,
 		    };
-		    try {
-		      beforeRedirect(this._options, responseDetails, requestDetails);
-		    }
-		    catch (err) {
-		      this.emit("error", err);
-		      return;
-		    }
+		    beforeRedirect(this._options, responseDetails, requestDetails);
 		    this._sanitizeOptions(this._options);
 		  }
 
 		  // Perform the redirected request
-		  try {
-		    this._performRequest();
-		  }
-		  catch (cause) {
-		    this.emit("error", new RedirectionError({ cause: cause }));
-		  }
+		  this._performRequest();
 		};
 
 		// Wraps the key/value object of protocols with redirect functionality
@@ -4139,27 +4226,16 @@
 
 		    // Executes a request, following redirects
 		    function request(input, options, callback) {
-		      // Parse parameters
-		      if (isString(input)) {
-		        var parsed;
-		        try {
-		          parsed = urlToOptions(new URL(input));
-		        }
-		        catch (err) {
-		          /* istanbul ignore next */
-		          parsed = url.parse(input);
-		        }
-		        if (!isString(parsed.protocol)) {
-		          throw new InvalidUrlError({ input });
-		        }
-		        input = parsed;
+		      // Parse parameters, ensuring that input is an object
+		      if (isURL(input)) {
+		        input = spreadUrlObject(input);
 		      }
-		      else if (URL && (input instanceof URL)) {
-		        input = urlToOptions(input);
+		      else if (isString(input)) {
+		        input = spreadUrlObject(parseUrl(input));
 		      }
 		      else {
 		        callback = options;
-		        options = input;
+		        options = validateUrl(input);
 		        input = { protocol: protocol };
 		      }
 		      if (isFunction(options)) {
@@ -4198,27 +4274,57 @@
 		  return exports;
 		}
 
-		/* istanbul ignore next */
 		function noop() { /* empty */ }
 
-		// from https://github.com/nodejs/node/blob/master/lib/internal/url.js
-		function urlToOptions(urlObject) {
-		  var options = {
-		    protocol: urlObject.protocol,
-		    hostname: urlObject.hostname.startsWith("[") ?
-		      /* istanbul ignore next */
-		      urlObject.hostname.slice(1, -1) :
-		      urlObject.hostname,
-		    hash: urlObject.hash,
-		    search: urlObject.search,
-		    pathname: urlObject.pathname,
-		    path: urlObject.pathname + urlObject.search,
-		    href: urlObject.href,
-		  };
-		  if (urlObject.port !== "") {
-		    options.port = Number(urlObject.port);
+		function parseUrl(input) {
+		  var parsed;
+		  /* istanbul ignore else */
+		  if (useNativeURL) {
+		    parsed = new URL(input);
 		  }
-		  return options;
+		  else {
+		    // Ensure the URL is valid and absolute
+		    parsed = validateUrl(url.parse(input));
+		    if (!isString(parsed.protocol)) {
+		      throw new InvalidUrlError({ input });
+		    }
+		  }
+		  return parsed;
+		}
+
+		function resolveUrl(relative, base) {
+		  /* istanbul ignore next */
+		  return useNativeURL ? new URL(relative, base) : parseUrl(url.resolve(base, relative));
+		}
+
+		function validateUrl(input) {
+		  if (/^\[/.test(input.hostname) && !/^\[[:0-9a-f]+\]$/i.test(input.hostname)) {
+		    throw new InvalidUrlError({ input: input.href || input });
+		  }
+		  if (/^\[/.test(input.host) && !/^\[[:0-9a-f]+\](:\d+)?$/i.test(input.host)) {
+		    throw new InvalidUrlError({ input: input.href || input });
+		  }
+		  return input;
+		}
+
+		function spreadUrlObject(urlObject, target) {
+		  var spread = target || {};
+		  for (var key of preservedUrlFields) {
+		    spread[key] = urlObject[key];
+		  }
+
+		  // Fix IPv6 hostname
+		  if (spread.hostname.startsWith("[")) {
+		    spread.hostname = spread.hostname.slice(1, -1);
+		  }
+		  // Ensure port is a number
+		  if (spread.port !== "") {
+		    spread.port = Number(spread.port);
+		  }
+		  // Concatenate path
+		  spread.path = spread.search ? spread.pathname + spread.search : spread.pathname;
+
+		  return spread;
 		}
 
 		function removeMatchingHeaders(regex, headers) {
@@ -4244,17 +4350,25 @@
 
 		  // Attach constructor and set default properties
 		  CustomError.prototype = new (baseClass || Error)();
-		  CustomError.prototype.constructor = CustomError;
-		  CustomError.prototype.name = "Error [" + code + "]";
+		  Object.defineProperties(CustomError.prototype, {
+		    constructor: {
+		      value: CustomError,
+		      enumerable: false,
+		    },
+		    name: {
+		      value: "Error [" + code + "]",
+		      enumerable: false,
+		    },
+		  });
 		  return CustomError;
 		}
 
-		function abortRequest(request) {
+		function destroyRequest(request, error) {
 		  for (var event of events) {
 		    request.removeListener(event, eventHandlers[event]);
 		  }
 		  request.on("error", noop);
-		  request.abort();
+		  request.destroy(error);
 		}
 
 		function isSubdomain(subdomain, domain) {
@@ -4275,10 +4389,14 @@
 		  return typeof value === "object" && ("length" in value);
 		}
 
+		function isURL(value) {
+		  return URL && value instanceof URL;
+		}
+
 		// Exports
 		followRedirects.exports = wrap({ http: http, https: https });
-		followRedirects.exports.wrap = wrap;
-		return followRedirects.exports;
+		followRedirectsExports.wrap = wrap;
+		return followRedirectsExports;
 	}
 
 	var data;
@@ -4304,11 +4422,11 @@
 		var settle = requireSettle();
 		var buildFullPath = requireBuildFullPath();
 		var buildURL = buildURL$1;
-		var http = require$$1$1;
+		var http = require$$1$2;
 		var https = require$$2;
 		var httpFollow = requireFollowRedirects().http;
 		var httpsFollow = requireFollowRedirects().https;
-		var url = require$$0$2;
+		var url = require$$0$1;
 		var zlib = require$$8;
 		var VERSION = requireData().version;
 		var createError = requireCreateError();
@@ -5485,13 +5603,13 @@
 	axios$1.exports = axios;
 
 	// Allow use of default import syntax in TypeScript
-	axios$1.exports.default = axios;
+	axiosExports.default = axios;
 
 	(function (module) {
-		module.exports = axios$1.exports;
+		module.exports = axiosExports;
 	} (axios$2));
 
-	var $axios = /*@__PURE__*/getDefaultExportFromCjs(axios$2.exports);
+	var $axios = /*@__PURE__*/getDefaultExportFromCjs(axiosExports$1);
 
 	function createSign(timestamp, secret) {
 	    const stringToSign = `${timestamp}\n${secret}`;
@@ -5579,3 +5697,4 @@
 	return RobotDing;
 
 }));
+//# sourceMappingURL=robot-ding.umd.js.map

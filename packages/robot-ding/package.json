@@ -6,6 +6,7 @@
     "钉钉",
     "钉钉自定义机器人"
   ],
+  "type": "module",
   "main": "lib/robot-ding.umd.js",
   "types": "lib/index.d.ts",
   "files": [
