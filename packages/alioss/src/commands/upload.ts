@@ -15,7 +15,7 @@ const register: TaskRegister = {
   async register() {
     console.time("上传时间：");
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
-    const config: AliossConfig = require(configPath);
+    const config: AliossConfig = (await import(configPath)).default;
     const uploadDir = path.resolve(process.cwd(), config.localDir);
     const files = deepDir(uploadDir);
     const ignoreList = ossignoreProcess();

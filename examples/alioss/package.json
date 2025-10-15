@@ -1,6 +1,7 @@
 {
   "name": "@examples/alioss",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "alioss:init": "alioss init",
     "alioss:upload": "alioss upload",

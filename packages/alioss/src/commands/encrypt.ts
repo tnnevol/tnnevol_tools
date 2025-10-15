@@ -10,7 +10,7 @@ const register: TaskRegister = {
   options: {},
   async register() {
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
-    const config: AliossConfig = require(configPath);
+    const config: AliossConfig = (await import(configPath)).default;
     const { content } = await inquirer.prompt([
       {
         type: "input",
