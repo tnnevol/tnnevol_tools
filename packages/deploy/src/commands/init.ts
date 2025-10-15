@@ -55,12 +55,12 @@ function createJsonObj(
 
 // 创建配置文件
 function createConfigFile(jsonObj: DeployConfig<string>) {
-  const str = `module.exports = ${JSON.stringify(jsonObj, null, 2)}`;
-  fs.writeFileSync(deployConfigPath, str);
+  const str = `export default ${JSON.stringify(jsonObj, null, 2)}`;
+  fs.writeFileSync(`${deployConfigPath}.js`, str);
 }
 // 格式化配置文件
 function formatConfigFile(): void {
-  childProcess.execSync(`npx prettier --write ${deployConfigPath}`);
+  childProcess.execSync(`npx prettier --write ${deployConfigPath}.js`);
 }
 
 const register: TaskRegister = {
@@ -69,8 +69,9 @@ const register: TaskRegister = {
   options: {},
   examples: dedent``,
   async register() {
-    if (checkDeployConfigExists()) {
-      output.error("deploy.config.js 配置文件已存在");
+    const { ext, has } = checkDeployConfigExists();
+    if (has) {
+      output.info(`deploy.config.${ext} 配置文件已存在`);
     } else {
       const userInputInfo = await getUserInputInfo();
       createConfigFile(createJsonObj(userInputInfo));

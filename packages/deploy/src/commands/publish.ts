@@ -304,8 +304,11 @@ const register: TaskRegister = {
     deploy publish --env=prod --unprompt
   `,
   async register(options: ICLIOptions) {
-    if (checkDeployConfigExists()) {
-      const config: DeployConfig<string> = require(deployConfigPath);
+    const { ext, has } = checkDeployConfigExists();
+    if (has) {
+      const config: DeployConfig<string> = (
+        await import(`${deployConfigPath}.${ext}`)
+      ).default;
       const projectName = config.projectName;
       const currentTime = new Date().getTime();
       // 检查环境是否存在

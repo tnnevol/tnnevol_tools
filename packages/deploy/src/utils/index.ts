@@ -4,6 +4,7 @@ import ora from "ora";
 import chalk from "chalk";
 import CryptoJS from "crypto-js";
 import fs from "fs";
+import path from "path";
 
 export function createUid(): string {
   const nanoid = customAlphabet("1234567890abcdef", 16);
@@ -11,7 +12,25 @@ export function createUid(): string {
 }
 
 export function checkDeployConfigExists() {
-  return fs.existsSync(deployConfigPath);
+  let currentExt = "js";
+  const has = ["mjs", "js"].some(ext => {
+    currentExt = ext;
+    return fs.existsSync(`${deployConfigPath}.${ext}`);
+  });
+  return {
+    ext: currentExt,
+    has
+  };
+}
+
+export function getPackage() {
+  const pkgPath = path.join(process.cwd(), "package.json");
+  if (fs.existsSync(pkgPath)) {
+    const pkgContent = fs.readFileSync(pkgPath, "utf-8");
+    return JSON.parse(pkgContent);
+  } else {
+    return {};
+  }
 }
 
 interface Output {

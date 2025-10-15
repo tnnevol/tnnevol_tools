@@ -2,6 +2,7 @@
   "name": "@tnnevol/deploy",
   "version": "5.2.5-beta.7",
   "description": "部署工具",
+  "type": "module",
   "scripts": {
     "start": "pnpm run start:rollup",
     "build": "pnpm run build:rollup",
@@ -9,13 +10,28 @@
     "build:rollup": "rimraf ./dist && rollup --config rollup.config.ts --configPlugin typescript"
   },
   "bin": {
-    "deploy": "bin/index.js"
+    "deploy": "./bin/index.mjs"
   },
   "keywords": [
     "deploy"
   ],
-  "main": "./bin/index.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./types/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
   "files": [
     "bin",
     "dist",
@@ -25,9 +41,6 @@
   "repository": {
     "type": "git",
     "url": "git@gitee.com:tnnevol/tnnevol_tools.git"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "license": "MIT",
   "dependencies": {

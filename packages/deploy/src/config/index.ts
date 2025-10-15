@@ -1,15 +1,16 @@
 import type { QuestionCollection } from "inquirer";
-import fs from "fs";
 import path from "path";
+import { getPackage } from "../utils";
+
+const pkg = getPackage();
+const pkgName = pkg.name || "";
 
 export const inquirerConfig: QuestionCollection<QuestionAnswerMap<string>> = [
   {
     type: "input",
     name: "projectName",
     message: "请输入项目名称",
-    default: fs.existsSync(`${path.join(process.cwd())}/package.json`)
-      ? require(`${process.cwd()}/package.json`).name
-      : ""
+    default: pkgName
   },
   /*  {
     type: "input",
@@ -87,4 +88,4 @@ export const inquirerConfig: QuestionCollection<QuestionAnswerMap<string>> = [
   }
 ];
 
-export const deployConfigPath = `${path.join(process.cwd())}/deploy.config.js`;
+export const deployConfigPath = path.join(process.cwd(), "deploy.config");

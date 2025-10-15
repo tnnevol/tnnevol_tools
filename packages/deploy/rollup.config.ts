@@ -1,4 +1,6 @@
-import createRollupConfig from "@tnnevol/rollup-helper";
+import createRollupConfig, {
+  addMjsExtensionsPlugin
+} from "@tnnevol/rollup-helper";
 import { defineConfig } from "rollup";
 
 const outDir = "dist";
@@ -10,6 +12,17 @@ export default defineConfig(
     inputDir,
     outDir,
     compileDependencies: compileDependencies,
-    external: ["../utils", "../config"]
+    external: [
+      "../utils",
+      "../config",
+      "./commands/init",
+      "./commands/encryption",
+      "./commands/publish"
+    ],
+    plugins: [
+      addMjsExtensionsPlugin({
+        indexModules: ["utils", "config"]
+      })
+    ]
   })
 );

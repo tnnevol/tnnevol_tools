@@ -9,7 +9,8 @@ const register: TaskRegister = {
   options: {},
   examples: dedent``,
   async register() {
-    if (checkDeployConfigExists()) {
+    const { ext, has } = checkDeployConfigExists();
+    if (has) {
       const { content } = await inquirer.prompt([
         {
           type: "input",
@@ -17,7 +18,9 @@ const register: TaskRegister = {
           message: "需要加密的字符"
         }
       ]);
-      const { cryptoKey, cryptoIv } = require(deployConfigPath);
+      const { cryptoKey, cryptoIv } = (
+        await import(`${deployConfigPath}.${ext}`)
+      ).default;
       output.success(aesCrypto.encrypt(content, cryptoKey, cryptoIv));
     }
   }
