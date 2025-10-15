@@ -4,11 +4,9 @@
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "./dist",
-    "typeRoots": [
-      "./node_modules/@types",
-    ]
+    "typeRoots": ["./node_modules/@types"],
+    "declaration": true,
+    "declarationMap": true
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

@@ -3,24 +3,35 @@
   "version": "5.2.6",
   "description": "注册 cli",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
   "scripts": {
     "test": "mocha",
-    "build": "pnpm unbuild --stub",
-    "postinstall": "pnpm run build"
+    "start": "pnpm run start:rollup",
+    "build": "pnpm run build:rollup",
+    "start:rollup": "rimraf ./dist && rollup --config rollup.config.ts -w --configPlugin typescript",
+    "build:rollup": "rimraf ./dist && rollup --config rollup.config.ts --configPlugin typescript"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
   },
   "keywords": [
     "register-cli"
   ],
-  "main": "./dist/index.cjs",
-  "types": "./dist/index.d.ts",
   "files": [
-    "src",
+    "dist",
     "test",
     "build.config.ts"
   ],
@@ -28,9 +39,6 @@
   "repository": {
     "type": "git",
     "url": "git@gitee.com:tnnevol/tnnevol_tools.git"
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "license": "MIT",
   "peerDependencies": {
@@ -40,7 +48,7 @@
     "fs-extra": "^11.1.0",
     "@types/fs-extra": "^11.0.1",
     "tasksfile": "^5.1.1",
-    "unbuild": "^2.0.0"
+    "rollup": "^3.2.3"
   },
   "devDependencies": {
     "typescript": "^4.8.4"

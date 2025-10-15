@@ -1,9 +1,9 @@
-const { execSync } = require("child_process");
-const path = require("path");
-const assert = require("assert");
-const fs = require("fs-extra");
+import { execSync } from "child_process";
+import path from "path";
+import assert from "assert";
+import fs from "fs-extra";
 
-const cli = path.join(__dirname, "./cli/demo.cjs");
+const cli = path.resolve("./test", "cli/demo.mjs");
 
 describe("register-cli", function () {
   it("should register task --help", function () {

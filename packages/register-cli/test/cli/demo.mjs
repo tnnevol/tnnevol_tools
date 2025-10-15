@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const registerTask = require("../..");
+import registerTask from "../../dist/index.mjs";
 
 registerTask([
   {
