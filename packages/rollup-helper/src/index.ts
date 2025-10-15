@@ -19,6 +19,7 @@ export interface Option {
   outDir: string;
   compileDependencies?: string[];
   external?: ExternalOption;
+  plugins?: InputPluginOption[];
 }
 
 export default function createRollupConfig(option: Option): RollupOptions[] {
@@ -41,7 +42,8 @@ export default function createRollupConfig(option: Option): RollupOptions[] {
       mainFields: ["module", "main"],
       preferBuiltins: true
     }),
-    terser()
+    terser(),
+    ...(option.plugins || [])
   ];
   const inputConfigList: InputConfig[] = [];
 
@@ -64,7 +66,7 @@ export default function createRollupConfig(option: Option): RollupOptions[] {
         inputConfigList.push({
           path: fileRelativePath,
           // output file name
-          file: fileRelativePath.replace(/\.ts$/, ".js"),
+          file: fileRelativePath.replace(/\.ts$/, ".mjs"),
           name: fileRelativePath.replace(/\.ts$/, ""),
           external:
             Object.prototype.toString.call(option.external) ===
@@ -83,11 +85,46 @@ export default function createRollupConfig(option: Option): RollupOptions[] {
     input: `${option.inputDir}/${info.path}`,
     output: {
       file: `${option.outDir}/${info.file}`,
-      format: "cjs",
+      format: "esm",
       name: info.name,
       sourcemap: !production
     },
     external: info.external, // 排除的模块或文件
     plugins
   }));
+}
+
+interface AddMjsExtensionsPluginOption {
+  /**
+   * 目录下面是index文件的模块
+   */
+  indexModules?: string[];
+  /**
+   * 指定模块名称
+   */
+  modules?: string[];
+}
+/**
+ * import from 文件编译后自动添加 mjs 后缀名
+ */
+export function addMjsExtensionsPlugin(option: AddMjsExtensionsPluginOption) {
+  const mergeOption = Object.assign({} as AddMjsExtensionsPluginOption, option);
+  return {
+    name: "add-mjs-extensions",
+    renderChunk(code) {
+      // 自动将相对导入的路径添加 .mjs 扩展名
+      return code.replace(/from\s?["']([\w/]*[^"']+)["']/g, (match, path) => {
+        // 如果路径不以 .mjs 结尾且是相对导入，则添加 .mjs
+        if (mergeOption.indexModules?.some(m => path.endsWith(m))) {
+          return `from "${path}/index.mjs"`;
+        } else if (
+          !path.endsWith(".mjs") &&
+          ["./", "../"].some(s => path.startsWith(s))
+        ) {
+          return `from"${path}.mjs"`;
+        }
+        return match;
+      });
+    }
+  } as InputPluginOption;
 }
