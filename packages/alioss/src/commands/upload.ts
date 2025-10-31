@@ -4,9 +4,9 @@ import fs from "fs-extra";
 import ignore from "ignore";
 import path from "path";
 import chalk from "chalk";
-import type { AliossConfig } from "alioss";
 import aesCrypto from "../utils/aes.crypto";
 import type { TaskRegister } from "@tnnevol/register-cli";
+import { readAliossConfig } from "../utils/common";
 
 const pathReg = /\\\\|\\/g;
 const register: TaskRegister = {
@@ -15,7 +15,7 @@ const register: TaskRegister = {
   async register() {
     console.time("上传时间：");
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
-    const config: AliossConfig = (await import(configPath)).default;
+    const config = await readAliossConfig(configPath);
     const uploadDir = path.resolve(process.cwd(), config.localDir);
     const files = deepDir(uploadDir);
     const ignoreList = ossignoreProcess();

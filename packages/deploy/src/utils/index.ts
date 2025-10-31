@@ -3,7 +3,8 @@ import { customAlphabet } from "nanoid";
 import ora from "ora";
 import chalk from "chalk";
 import CryptoJS from "crypto-js";
-import fs from "fs";
+import fs from "node:fs";
+import { pathToFileURL } from "node:url";
 import path from "path";
 
 export function createUid(): string {
@@ -21,6 +22,12 @@ export function checkDeployConfigExists() {
     ext: currentExt,
     has
   };
+}
+
+/** 获取配置文件*/
+export async function readDeployConfig(filePath: string) {
+  return (await import(`${pathToFileURL(filePath).href}`))
+    .default as DeployConfig<string>;
 }
 
 export function getPackage() {

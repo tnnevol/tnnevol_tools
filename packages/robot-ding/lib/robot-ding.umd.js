@@ -5697,4 +5697,3 @@
 	return RobotDing;
 
 }));
-//# sourceMappingURL=robot-ding.umd.js.map

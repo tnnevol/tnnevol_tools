@@ -1,4 +1,9 @@
-import { output, checkDeployConfigExists, aesCrypto } from "../utils";
+import {
+  output,
+  checkDeployConfigExists,
+  aesCrypto,
+  readDeployConfig
+} from "../utils";
 import { deployConfigPath } from "../config";
 import inquirer from "inquirer";
 import dedent from "dedent";
@@ -18,9 +23,9 @@ const register: TaskRegister = {
           message: "需要加密的字符"
         }
       ]);
-      const { cryptoKey, cryptoIv } = (
-        await import(`${deployConfigPath}.${ext}`)
-      ).default;
+      const { cryptoKey, cryptoIv } = await readDeployConfig(
+        `${deployConfigPath}.${ext}`
+      );
       output.success(aesCrypto.encrypt(content, cryptoKey, cryptoIv));
     }
   }

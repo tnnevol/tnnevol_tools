@@ -15,6 +15,7 @@ export default defineConfig(
     external: [
       "../utils/aes.crypto",
       "../utils/create.uid",
+      "../utils/common",
       "./commands/init",
       "./commands/encrypt",
       "./commands/upload"

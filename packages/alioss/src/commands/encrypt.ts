@@ -1,7 +1,7 @@
 import path from "path";
 import aesCrypto from "../utils/aes.crypto";
+import { readAliossConfig } from "../utils/common";
 import inquirer from "inquirer";
-import type { AliossConfig } from "alioss";
 import type { TaskRegister } from "@tnnevol/register-cli";
 
 const register: TaskRegister = {
@@ -10,7 +10,7 @@ const register: TaskRegister = {
   options: {},
   async register() {
     const configPath = path.resolve(process.cwd(), "alioss.config.js");
-    const config: AliossConfig = (await import(configPath)).default;
+    const config = await readAliossConfig(configPath);
     const { content } = await inquirer.prompt([
       {
         type: "input",

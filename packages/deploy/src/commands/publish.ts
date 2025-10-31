@@ -1,6 +1,11 @@
 import { deployConfigPath } from "../config";
 import dedent from "dedent";
-import { aesCrypto, checkDeployConfigExists, output } from "../utils";
+import {
+  aesCrypto,
+  checkDeployConfigExists,
+  output,
+  readDeployConfig
+} from "../utils";
 import { DistinctQuestion } from "inquirer";
 import fs from "fs";
 import path from "path";
@@ -306,9 +311,7 @@ const register: TaskRegister = {
   async register(options: ICLIOptions) {
     const { ext, has } = checkDeployConfigExists();
     if (has) {
-      const config: DeployConfig<string> = (
-        await import(`${deployConfigPath}.${ext}`)
-      ).default;
+      const config = await readDeployConfig(`${deployConfigPath}.${ext}`);
       const projectName = config.projectName;
       const currentTime = new Date().getTime();
       // 检查环境是否存在
